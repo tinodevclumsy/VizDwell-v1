@@ -1,15 +1,33 @@
+import { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import PropertyModel from "./PropertyModel";
+import { HemisphereLightHelper } from "three";
+
 import {
   PerspectiveCamera,
   OrbitControls,
   Environment,
+  useHelper,
 } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { useControls } from "leva";
 
 const Camera = () => {
   return <PerspectiveCamera makeDefault fov={75} position={[0, 0, 3]} />;
+};
+
+const Light = () => {
+  const lightRef = useRef();
+
+  useHelper(lightRef, HemisphereLightHelper, 5);
+  return (
+    <hemisphereLight
+      ref={lightRef}
+      skyColor={"#fff"}
+      groundColor={"#444"}
+      intensity={3}
+    />
+  );
 };
 
 const Control = () => {
@@ -45,6 +63,7 @@ const PropertyCanvas = () => {
       <Environment preset="sunset" background backgroundBlurriness={1} />
       <Camera />
       <Control />
+      <Light />
       <PropertyModel />
     </Canvas>
   );
