@@ -1,10 +1,7 @@
 import { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import PropertyModel from "./PropertyModel";
-import {
-  HemisphereLightHelper,
-  DirectionalLightHelper,
-} from "three";
+import { HemisphereLightHelper, DirectionalLightHelper } from "three";
 
 import {
   PerspectiveCamera,
@@ -14,9 +11,9 @@ import {
 } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { useControls } from "leva";
+import { Model } from "./model/Exterior";
 
 const Camera = () => {
-
   const cameraCtl = useControls("PerspectiveCamera", {
     position: {
       x: 5,
@@ -42,15 +39,15 @@ const Light = () => {
   const hemisphereLightRef = useRef();
   const directionalLightRef = useRef();
 
-  useHelper(hemisphereLightRef, HemisphereLightHelper, 5);
+  useHelper(hemisphereLightRef, HemisphereLightHelper, 15);
   useHelper(directionalLightRef, DirectionalLightHelper, 5);
 
   const directionalCtl = useControls("Directional Light", {
     visible: true,
     position: {
-      x: 5,
-      y: 8,
-      z: 5,
+      x: 15,
+      y: 18,
+      z: 15,
     },
     castShadow: true,
   });
@@ -73,6 +70,12 @@ const Light = () => {
         ]}
         castShadow={directionalCtl.castShadow}
         intensity={2}
+        shadow-mapSize-width={1024} // Resolution of the shadow map
+        shadow-mapSize-height={1024}
+        shadow-camera-left={-10}
+        shadow-camera-right={10}
+        shadow-camera-top={10}
+        shadow-camera-bottom={-10}
       />
     </>
   );
@@ -112,6 +115,7 @@ const PropertyCanvas = () => {
       <Camera />
       <Control />
       <Light />
+      <Model />
       <PropertyModel />
     </Canvas>
   );
