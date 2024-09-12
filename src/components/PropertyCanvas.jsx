@@ -1,7 +1,10 @@
 import { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import PropertyModel from "./PropertyModel";
-import { HemisphereLightHelper, DirectionalLightHelper } from "three";
+import {
+  HemisphereLightHelper,
+  DirectionalLightHelper,
+} from "three";
 
 import {
   PerspectiveCamera,
@@ -13,7 +16,26 @@ import { Perf } from "r3f-perf";
 import { useControls } from "leva";
 
 const Camera = () => {
-  return <PerspectiveCamera makeDefault fov={75} position={[0, 0, 3]} />;
+
+  const cameraCtl = useControls("PerspectiveCamera", {
+    position: {
+      x: 5,
+      y: 8,
+      z: 5,
+    },
+  });
+
+  return (
+    <PerspectiveCamera
+      makeDefault
+      fov={75}
+      position={[
+        cameraCtl.position.x,
+        cameraCtl.position.y,
+        cameraCtl.position.z,
+      ]}
+    />
+  );
 };
 
 const Light = () => {
@@ -23,7 +45,7 @@ const Light = () => {
   useHelper(hemisphereLightRef, HemisphereLightHelper, 5);
   useHelper(directionalLightRef, DirectionalLightHelper, 5);
 
-    const directionalCtl = useControls('Directional Light', {
+  const directionalCtl = useControls("Directional Light", {
     visible: true,
     position: {
       x: 5,
@@ -31,7 +53,7 @@ const Light = () => {
       z: 5,
     },
     castShadow: true,
-  })
+  });
 
   return (
     <>
@@ -63,7 +85,7 @@ const Control = () => {
     rotateSpeed,
     maxPolarAngle,
     minPolarAngle,
-  } = useControls('OrbitControls', {
+  } = useControls("OrbitControls", {
     enableDamping: { value: true },
     dampingFactor: { value: 0.1, min: 0, max: 1, step: 0.01 },
     rotateSpeed: { value: 1, min: 0.1, max: 5 },
