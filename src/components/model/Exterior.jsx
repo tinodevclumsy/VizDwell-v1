@@ -1,7 +1,12 @@
 import { useGLTF } from "@react-three/drei";
+import { Html } from "@react-three/drei";
+import ViewButton from "../common/ViewButton";
+import { useCameraView } from "../../hooks/useCameraView";
 
 export function Model(props) {
   const { nodes, materials } = useGLTF("/model/exterior-transformed.glb");
+  const { changeView } = useCameraView();
+
   return (
     <>
       <group {...props} dispose={null}>
@@ -13,10 +18,17 @@ export function Model(props) {
           castShadow
         />
       </group>
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -5.9, 0]} receiveShadow>
+      <mesh
+        rotation={[-Math.PI / 2, 0, 0]}
+        position={[0, -5.9, 0]}
+        receiveShadow
+      >
         <planeGeometry args={[100, 100]} />
         <meshStandardMaterial color="blue" />
       </mesh>
+      <Html position={[-5.9 / 2, 0, 0]}>
+        <ViewButton onClick={() => changeView("interior")} />
+      </Html>
     </>
   );
 }

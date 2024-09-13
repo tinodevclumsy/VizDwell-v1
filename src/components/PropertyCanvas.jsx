@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import PropertyModel from "./PropertyModel";
 import { HemisphereLightHelper, DirectionalLightHelper } from "three";
 
@@ -12,19 +12,41 @@ import {
 import { Perf } from "r3f-perf";
 import { useControls } from "leva";
 import { Model } from "./model/Exterior";
+import { useSelector } from "react-redux";
+import { useCameraView } from "../hooks/useCameraView";
 
-const Camera = () => {
+const Camera = ({ viewMode }) => {
+  const cameraRef = useRef();
+  const { changeView } = useCameraView();
+
+  useFrame(() => {
+    if (viewMode === "interior" && cameraRef.current) {
+      if (
+        cameraRef.current.position.x > 2.5 &&
+        cameraRef.current.position.y > 4 &&
+        cameraRef.current.position.z < 2.5
+      ) {
+        cameraRef.current.position.x -= 0.1;
+        cameraRef.current.position.y -= 0.1;
+        cameraRef.current.position.z += 0.1;
+      } else {
+        changeView("default");
+      }
+    }
+  });
+
   const cameraCtl = useControls("PerspectiveCamera", {
     position: {
-      x: 5,
-      y: 8,
-      z: 5,
+      x: 15,
+      y: 15,
+      z: -12,
     },
   });
 
   return (
     <PerspectiveCamera
       makeDefault
+      ref={cameraRef}
       fov={75}
       position={[
         cameraCtl.position.x,
@@ -108,11 +130,12 @@ const Control = () => {
 };
 
 const PropertyCanvas = () => {
+  const viewMode = useSelector((state) => state.camera.viewMode);
   return (
     <Canvas shadows gl={{ antialias: true }}>
       <Perf position="top-left" />
       <Environment preset="sunset" background backgroundBlurriness={1} />
-      <Camera />
+      <Camera viewMode={viewMode} />
       <Control />
       <Light />
       <Model />
