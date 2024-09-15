@@ -1,8 +1,6 @@
 import { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import PropertyModel from "./PropertyModel";
 import { HemisphereLightHelper, DirectionalLightHelper } from "three";
-
 import {
   PerspectiveCamera,
   OrbitControls,
@@ -11,35 +9,49 @@ import {
 } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { useControls } from "leva";
+import { useDispatch, useSelector } from "react-redux";
 import { Model } from "./model/Exterior";
-import { useSelector } from "react-redux";
-import { useCameraView } from "../hooks/useCameraView";
+import Ground from "./model/Ground";
+import SceneViewButtons from "./SceneViewButtons";
+import { toggleCameraMovement } from "../store/features/camera/cameraSlice";
 
-const Camera = ({ viewMode }) => {
+const Camera = ({ viewMode, isMoving }) => {
   const cameraRef = useRef();
-  const { changeView } = useCameraView();
+  const dispatch = useDispatch();
 
   useFrame(() => {
-    if (viewMode === "interior" && cameraRef.current) {
-      if (
-        cameraRef.current.position.x > 2.5 &&
-        cameraRef.current.position.y > 4 &&
-        cameraRef.current.position.z < 2.5
-      ) {
+    if (viewMode === "interior" && cameraRef.current && isMoving) {
+      let done = 0;
+
+      if (cameraRef.current.position.x > 5.1) {
         cameraRef.current.position.x -= 0.1;
+      } else {
+        done++;
+      }
+
+      if (cameraRef.current.position.y > 7.4) {
         cameraRef.current.position.y -= 0.1;
+      } else {
+        done++;
+      }
+
+      if (cameraRef.current.position.z < -0.7) {
         cameraRef.current.position.z += 0.1;
       } else {
-        changeView("default");
+        done++;
+      }
+
+      if (done === 3) {
+        dispatch(toggleCameraMovement());
       }
     }
   });
 
   const cameraCtl = useControls("PerspectiveCamera", {
     position: {
-      x: 15,
-      y: 15,
-      z: -12,
+      x: 16.66727556654493,
+      y: 15.624022372761212,
+      z: -11.673199871357799,
     },
   });
 
@@ -91,7 +103,7 @@ const Light = () => {
           directionalCtl.position.z,
         ]}
         castShadow={directionalCtl.castShadow}
-        intensity={2}
+        intensity={1}
         shadow-mapSize-width={1024} // Resolution of the shadow map
         shadow-mapSize-height={1024}
         shadow-camera-left={-10}
@@ -125,21 +137,25 @@ const Control = () => {
       rotateSpeed={rotateSpeed}
       maxPolarAngle={maxPolarAngle}
       minPolarAngle={minPolarAngle}
+      enableZoom={true}
     />
   );
 };
 
 const PropertyCanvas = () => {
   const viewMode = useSelector((state) => state.camera.viewMode);
+  const isMoving = useSelector((state) => state.camera.isMoving);
+
   return (
     <Canvas shadows gl={{ antialias: true }}>
       <Perf position="top-left" />
       <Environment preset="sunset" background backgroundBlurriness={1} />
-      <Camera viewMode={viewMode} />
+      <Camera viewMode={viewMode} isMoving={isMoving} />
       <Control />
       <Light />
       <Model />
-      <PropertyModel />
+      <Ground />
+      <SceneViewButtons />
     </Canvas>
   );
 };

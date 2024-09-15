@@ -1,36 +1,44 @@
 import { useGLTF } from "@react-three/drei";
-import { Html } from "@react-three/drei";
-import ViewButton from "../common/ViewButton";
-import { useCameraView } from "../../hooks/useCameraView";
 
 export function Model(props) {
-  const { nodes, materials } = useGLTF("/model/exterior-transformed.glb");
-  const { changeView } = useCameraView();
-
+  const { nodes } = useGLTF("/model/exterior_wall-transformed.glb");
   return (
-    <>
-      <group {...props} dispose={null}>
-        <mesh
-          geometry={nodes.Cube.geometry}
-          material={materials.Material}
-          position={[0, 0.5, 0]}
-          scale={-5.9}
-          castShadow
-        />
-      </group>
+    <group {...props} dispose={null} position={[5.9, 0, 0]}>
       <mesh
-        rotation={[-Math.PI / 2, 0, 0]}
-        position={[0, -5.9, 0]}
-        receiveShadow
-      >
-        <planeGeometry args={[100, 100]} />
-        <meshStandardMaterial color="blue" />
-      </mesh>
-      <Html position={[-5.9 / 2, 0, 0]}>
-        <ViewButton onClick={() => changeView("interior")} />
-      </Html>
-    </>
+        geometry={
+          nodes["Basic_Wall_Exterior_-_Wood_Siding_on_Wood_Stud_587930"]
+            .geometry
+        }
+        material={
+          nodes["Basic_Wall_Exterior_-_Wood_Siding_on_Wood_Stud_587930"]
+            .material
+        }
+        scale={0.305}
+        castShadow
+      />
+      <instancedMesh
+        args={[
+          nodes['Fixed_with_Trim_36"_x_72"_600660_605050_Geometry'].geometry,
+          nodes['Fixed_with_Trim_36"_x_72"_600660_605050_Geometry'].material,
+          20,
+        ]}
+        instanceMatrix={
+          nodes['Fixed_with_Trim_36"_x_72"_600660_605050_Geometry']
+            .instanceMatrix
+        }
+      />
+      <instancedMesh
+        args={[
+          nodes['Single-Flush_34"_x_80"_602587_602616_Geometry'].geometry,
+          nodes['Single-Flush_34"_x_80"_602587_602616_Geometry'].material,
+          5,
+        ]}
+        instanceMatrix={
+          nodes['Single-Flush_34"_x_80"_602587_602616_Geometry'].instanceMatrix
+        }
+      />
+    </group>
   );
 }
 
-useGLTF.preload("/model/exterior-transformed.glb");
+useGLTF.preload("/model/exterior_wall-transformed.glb");
