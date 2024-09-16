@@ -14,6 +14,8 @@ import { Model } from "./model/Exterior";
 import Ground from "./model/Ground";
 import SceneViewButtons from "./SceneViewButtons";
 import { toggleCameraMovement } from "../store/features/camera/cameraSlice";
+import ExitButton from "./common/ExitButton";
+import { CAMERA_POSITIONS } from "../config/cameraPositions";
 
 const Camera = ({ viewMode, isMoving }) => {
   const cameraRef = useRef();
@@ -44,6 +46,32 @@ const Camera = ({ viewMode, isMoving }) => {
       if (done === 3) {
         dispatch(toggleCameraMovement());
       }
+    }
+
+    if (viewMode === "default" && cameraRef.current && isMoving) {
+      let done = 0;
+      if (cameraRef.current.position.x < CAMERA_POSITIONS.DEFAULT.position.x) {
+        cameraRef.current.position.x += 0.1;
+      } else {
+        done++;
+      }
+
+      if (cameraRef.current.position.y < CAMERA_POSITIONS.DEFAULT.position.y) {
+        cameraRef.current.position.y += 0.1;
+      } else {
+        done++;
+      }
+
+      if (cameraRef.current.position.z < CAMERA_POSITIONS.DEFAULT.position.z) {
+        cameraRef.current.position.z += 0.1;
+      } else {
+        done++;
+      }
+
+      if (done === 3) {
+        dispatch(toggleCameraMovement());
+      }
+      // CAMERA_POSITIONS.DEFAULT.position.x
     }
   });
 
@@ -147,16 +175,19 @@ const PropertyCanvas = () => {
   const isMoving = useSelector((state) => state.camera.isMoving);
 
   return (
-    <Canvas shadows gl={{ antialias: true }}>
-      <Perf position="top-left" />
-      <Environment preset="sunset" background backgroundBlurriness={1} />
-      <Camera viewMode={viewMode} isMoving={isMoving} />
-      <Control />
-      <Light />
-      <Model />
-      <Ground />
-      <SceneViewButtons />
-    </Canvas>
+    <>
+      <ExitButton viewMode={viewMode} isMoving={isMoving} />
+      <Canvas shadows gl={{ antialias: true }}>
+        <Perf position="top-left" />
+        <Environment preset="sunset" background backgroundBlurriness={1} />
+        <Camera viewMode={viewMode} isMoving={isMoving} />
+        <Control />
+        <Light />
+        <Model />
+        <Ground />
+        <SceneViewButtons />
+      </Canvas>
+    </>
   );
 };
 
