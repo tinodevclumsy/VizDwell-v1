@@ -1,5 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setCameraView, toggleCameraMovement } from "../store/features/camera/cameraSlice";
+import {
+  setCameraView,
+  toggleCameraMovement,
+  setFrontView,
+} from "../store/features/camera/cameraSlice";
 
 export const useCameraView = () => {
   const dispatch = useDispatch();
@@ -11,5 +15,9 @@ export const useCameraView = () => {
     dispatch(toggleCameraMovement());
   };
 
-  return { viewMode, changeView };
+  const changeIsFrontView = (v) => {
+    dispatch(setFrontView(v));
+  };
+
+  return { viewMode, changeView, changeIsFrontView };
 };
