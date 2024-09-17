@@ -5,12 +5,20 @@ import { useDispatch } from "react-redux";
 import { useFrame } from "@react-three/fiber";
 import { toggleCameraMovement } from "../store/features/camera/cameraSlice";
 import { useControls } from "leva";
+import { useCameraView } from "../hooks/useCameraView";
 
 const Camera = ({ viewMode, isMoving }) => {
   const cameraRef = useRef();
   const dispatch = useDispatch();
-
+  const { changeIsFrontView } = useCameraView();
+  
   useFrame(() => {
+    if (cameraRef.current.position.x < 5) {
+      console.log("remove view button");
+      changeIsFrontView(false);
+    } else {
+      changeIsFrontView(true);
+    }
     if (
       viewMode === CAMERA_POSITIONS.INTERIOR.name &&
       cameraRef.current &&
@@ -75,7 +83,7 @@ const Camera = ({ viewMode, isMoving }) => {
     position: {
       x: CAMERA_POSITIONS.DEFAULT.position.x,
       y: CAMERA_POSITIONS.DEFAULT.position.y,
-      z: -11.673199871357799,
+      z: CAMERA_POSITIONS.DEFAULT.position.z,
     },
   });
 
