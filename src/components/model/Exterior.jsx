@@ -1,44 +1,37 @@
 import { useGLTF } from "@react-three/drei";
+import { useControls } from "leva";
 
 export function Model(props) {
-  const { nodes } = useGLTF("/model/exterior_wall-transformed.glb");
+  const { nodes } = useGLTF("/model/exterior-transformed.glb");
+
+  const modelCtl = useControls("model pos", {
+    position: {
+      x: 2,
+      y: -6,
+      z: 5,
+    },
+  });
+
   return (
-    <group {...props} dispose={null} position={[5.9, 0, 0]}>
+    <group
+      {...props}
+      dispose={null}
+      position={[modelCtl.position.x, modelCtl.position.y, modelCtl.position.z]}
+    >
       <mesh
         geometry={
-          nodes["Basic_Wall_Exterior_-_Wood_Siding_on_Wood_Stud_587930"]
-            .geometry
+          nodes['Basic_Wall_eW1wi_-_6"_EXTERIOR_WOOD_WALL_632022'].geometry
         }
         material={
-          nodes["Basic_Wall_Exterior_-_Wood_Siding_on_Wood_Stud_587930"]
-            .material
+          nodes['Basic_Wall_eW1wi_-_6"_EXTERIOR_WOOD_WALL_632022'].material
         }
+        // position={[1.241, -0.957, -4.392]}
         scale={0.305}
+        rotation={[0, Math.PI, 0]}
         castShadow
-      />
-      <instancedMesh
-        args={[
-          nodes['Fixed_with_Trim_36"_x_72"_600660_605050_Geometry'].geometry,
-          nodes['Fixed_with_Trim_36"_x_72"_600660_605050_Geometry'].material,
-          20,
-        ]}
-        instanceMatrix={
-          nodes['Fixed_with_Trim_36"_x_72"_600660_605050_Geometry']
-            .instanceMatrix
-        }
-      />
-      <instancedMesh
-        args={[
-          nodes['Single-Flush_34"_x_80"_602587_602616_Geometry'].geometry,
-          nodes['Single-Flush_34"_x_80"_602587_602616_Geometry'].material,
-          5,
-        ]}
-        instanceMatrix={
-          nodes['Single-Flush_34"_x_80"_602587_602616_Geometry'].instanceMatrix
-        }
       />
     </group>
   );
 }
 
-useGLTF.preload("/model/exterior_wall-transformed.glb");
+useGLTF.preload("/model/exterior-transformed.glb");

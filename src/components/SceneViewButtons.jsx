@@ -11,7 +11,7 @@ const SceneViewButtons = () => {
   return (
     <>
       {viewMode !== "interior" && isFrontView && (
-        <Html position={[6, 7, -0.5]}>
+        <Html position={[4.6, 1.0, -0.5]}>
           <ViewButton onClick={() => changeView("interior")} />
         </Html>
       )}
