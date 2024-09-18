@@ -1,4 +1,5 @@
 export const CAMERA_POSITIONS = {
+  // {x: 6.176048180649683, y: 0.5658697109901725, z: -4.6270848559665865}
   DEFAULT: {
     name: "default",
     position: {

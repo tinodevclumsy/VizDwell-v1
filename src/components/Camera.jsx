@@ -13,7 +13,7 @@ const Camera = ({ viewMode, isMoving }) => {
   const { changeIsFrontView } = useCameraView();
   
   useFrame(() => {
-    // console.log(cameraRef.current.position)
+    console.log(cameraRef.current.position)
     if (cameraRef.current.position.x < 5) {
       console.log("remove view button");
       changeIsFrontView(false);
