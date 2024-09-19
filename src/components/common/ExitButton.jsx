@@ -28,8 +28,14 @@ const ExitBtn = styled.button`
   width: 75px;
   height: 75px;
   border-radius: 50%;
-  background: linear-gradient(to bottom, hotpink 0%, tomato 100%);
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  background: linear-gradient(
+    to bottom,
+    #fff 0%,
+    ${({ theme }) => theme.colors.secondary} 100%
+  );
+  box-shadow: 0 4px 4px rgba(255, 255, 255, 0.3);
+  border: 1px solid #fff;
   position: relative;
   display: flex;
   justify-content: center;
