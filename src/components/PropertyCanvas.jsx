@@ -18,7 +18,7 @@ const PropertyCanvas = () => {
     <>
       <ExitButton viewMode={viewMode} isMoving={isMoving} />
       <Canvas shadows gl={{ antialias: true }}>
-        <Perf position="top-left" />
+        <Perf position="bottom-right" />
         <Environment preset="sunset" background backgroundBlurriness={1} />
         <Camera viewMode={viewMode} isMoving={isMoving} />
         <Control />
