@@ -15,13 +15,16 @@ const ViewBtn = styled.button`
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: linear-gradient(to bottom, hotpink 0%, tomato 100%);
+  background: linear-gradient(
+    to bottom,
+    #fff 0%,
+    ${({ theme }) => theme.colors.secondary} 100%
+  );
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-
   &:before {
     display: block;
     position: absolute;

@@ -2,6 +2,8 @@ import { Html } from "@react-three/drei";
 import { useSelector } from "react-redux";
 import ViewButton from "./common/ViewButton";
 import { useCameraView } from "../hooks/useCameraView";
+import theme from "../utils/theme";
+import { ThemeProvider } from "styled-components";
 
 const SceneViewButtons = () => {
   const { changeView } = useCameraView();
@@ -12,7 +14,9 @@ const SceneViewButtons = () => {
     <>
       {viewMode !== "interior" && isFrontView && (
         <Html position={[4.6, 1.0, -0.5]}>
-          <ViewButton onClick={() => changeView("interior")} />
+          <ThemeProvider theme={theme}>
+            <ViewButton onClick={() => changeView("interior")} />
+          </ThemeProvider>
         </Html>
       )}
     </>
