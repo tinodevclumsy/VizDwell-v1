@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const cameraSlice = createSlice({
   name: "camera",
   initialState: {
-    viewMode: "default",
+    viewMode: "DEFAULT",
     isMoving: false,
     isFrontView: true,
   },
