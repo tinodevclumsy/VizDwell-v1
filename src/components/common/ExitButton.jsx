@@ -48,7 +48,7 @@ const ExitBtn = styled.button`
     width: 150%;
     height: 150%;
     border-radius: 50%;
-    background: black;
+    background: ${({ theme }) => theme.colors.secondary};
     opacity: 0;
     content: "";
   }
@@ -62,10 +62,11 @@ const ExitButton = ({ viewMode, isMoving }) => {
   const { changeView } = useCameraView();
 
   return (
-    viewMode === "interior" &&
+    viewMode !== "DEFAULT" && 
+    viewMode !== "BALCONY" &&
     !isMoving && (
       <ExitBtnContainer>
-        <ExitBtn onClick={() => changeView("default")}>EXIT</ExitBtn>
+        <ExitBtn onClick={() => changeView("DEFAULT")}>EXIT</ExitBtn>
       </ExitBtnContainer>
     )
   );

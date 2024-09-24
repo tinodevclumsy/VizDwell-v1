@@ -32,7 +32,7 @@ const ViewBtn = styled.button`
     width: 150%;
     height: 150%;
     border-radius: 50%;
-    background: black;
+    background: ${({ theme }) => theme.colors.primary};
     opacity: 0;
     content: "";
     animation: ${pulse} 1s infinite;

@@ -9,6 +9,7 @@ import ExitButton from "./common/ExitButton";
 import Camera from "./Camera";
 import Lights from "./Lights";
 import Control from "./Control";
+import ViewWidget from "./ViewWidget";
 
 const PropertyCanvas = () => {
   const viewMode = useSelector((state) => state.camera.viewMode);
@@ -16,12 +17,13 @@ const PropertyCanvas = () => {
 
   return (
     <>
+      {viewMode !== "DEFAULT" && <ViewWidget />}
       <ExitButton viewMode={viewMode} isMoving={isMoving} />
       <Canvas shadows gl={{ antialias: true }}>
         <Perf position="bottom-right" />
         <Environment preset="sunset" background backgroundBlurriness={1} />
         <Camera viewMode={viewMode} isMoving={isMoving} />
-        <Control />
+        <Control viewMode={viewMode} isMoving={isMoving} />
         <Lights />
         <Model />
         <Ground />
