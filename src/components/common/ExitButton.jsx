@@ -25,8 +25,8 @@ const ExitBtnContainer = styled.div`
 `;
 
 const ExitBtn = styled.button`
-  width: 75px;
-  height: 75px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
   color: #fff;
   background: linear-gradient(
@@ -40,7 +40,7 @@ const ExitBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  font-size: 14px;
   &:before {
     display: block;
     position: absolute;
@@ -62,7 +62,7 @@ const ExitButton = ({ viewMode, isMoving }) => {
   const { changeView } = useCameraView();
 
   return (
-    viewMode !== "DEFAULT" && 
+    viewMode !== "DEFAULT" &&
     viewMode !== "BALCONY" &&
     !isMoving && (
       <ExitBtnContainer>

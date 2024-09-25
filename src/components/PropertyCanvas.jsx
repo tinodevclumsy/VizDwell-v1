@@ -17,7 +17,7 @@ const PropertyCanvas = () => {
 
   return (
     <>
-      {viewMode !== "DEFAULT" && <ViewWidget />}
+      {viewMode !== "DEFAULT" && <ViewWidget viewMode={viewMode} />}
       <ExitButton viewMode={viewMode} isMoving={isMoving} />
       <Canvas shadows gl={{ antialias: true }}>
         <Perf position="bottom-right" />

@@ -4,7 +4,7 @@ import { useCameraView } from "../hooks/useCameraView";
 const WidgetContainer = styled.div`
   position: absolute;
   top: 10px;
-  left: 10px;
+  right: 10px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -25,11 +25,21 @@ const WidgetButton = styled.button`
   border: none;
   cursor: pointer;
   text-transform: uppercase;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.primary};
+  }
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.primary};
+    color: #666;
+    cursor: not-allowed;
+    opacity: 0.8;
+  }
 `;
 
 import { CAMERA_POSITIONS } from "../config/cameraPositions";
 
-const ViewWidget = () => {
+const ViewWidget = ({ viewMode }) => {
   const { changeView } = useCameraView();
 
   return (
@@ -37,7 +47,11 @@ const ViewWidget = () => {
       {Object.entries(CAMERA_POSITIONS).map(
         ([key, value], index) =>
           key !== "DEFAULT" && (
-            <WidgetButton key={index} onClick={() => changeView(key)}>
+            <WidgetButton
+              disabled={viewMode === key}
+              key={index}
+              onClick={() => changeView(key)}
+            >
               {value.name}
             </WidgetButton>
           )
