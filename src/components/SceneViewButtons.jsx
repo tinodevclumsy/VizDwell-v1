@@ -13,7 +13,7 @@ const SceneViewButtons = () => {
   return (
     <>
       {viewMode !== "LIVING_ROOM" && isFrontView && (
-        <Html position={[4.6, 1.0, -0.5]}>
+        <Html position={[12, 0, -0.5]}>
           <ThemeProvider theme={theme}>
             <ViewButton onClick={() => changeView("LIVING_ROOM")} />
           </ThemeProvider>

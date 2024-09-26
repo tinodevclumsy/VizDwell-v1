@@ -25,7 +25,7 @@ const Control = ({ viewMode, isMoving }) => {
     minPolarAngle: { value: 1, min: 0, max: Math.PI },
     minAzimuthAngle: { value: 0.5, min: -Math.PI, max: 2, step: 0.01 },
     maxAzimuthAngle: { value: 3.5, min: 0, max: Math.PI * 2, step: 0.01 },
-    maxDistance: { value: 17, min: 0, max: 100, step: 1 },
+    maxDistance: { value: 55, min: 0, max: 100, step: 1 },
   });
 
   useEffect(() => {
