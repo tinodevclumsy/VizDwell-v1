@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { Environment, Html } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { useSelector } from "react-redux";
-import { Model } from "./model/Exterior";
+import { Model } from "./model/Model";
 import Ground from "./model/Ground";
 import SceneViewButtons from "./SceneViewButtons";
 import ExitButton from "./common/ExitButton";
