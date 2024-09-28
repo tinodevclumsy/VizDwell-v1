@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useCameraView } from "../hooks/useCameraView";
+import { VIEW_POSITIONS } from "../config/viewPositions";
 
 const WidgetContainer = styled.div`
   position: absolute;
@@ -37,14 +38,12 @@ const WidgetButton = styled.button`
   }
 `;
 
-import { CAMERA_POSITIONS } from "../config/cameraPositions";
-
 const ViewWidget = ({ viewMode }) => {
   const { changeView } = useCameraView();
 
   return (
     <WidgetContainer>
-      {Object.entries(CAMERA_POSITIONS).map(
+      {Object.entries(VIEW_POSITIONS).map(
         ([key, value], index) =>
           key !== "DEFAULT" && (
             <WidgetButton
