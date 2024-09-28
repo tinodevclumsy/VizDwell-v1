@@ -3,7 +3,7 @@ import { OrbitControls } from "@react-three/drei";
 import { useControls } from "leva";
 import { useFrame } from "@react-three/fiber";
 import JEASINGS from "jeasings";
-import { CAMERA_POSITIONS } from "../config/cameraPositions";
+import { VIEW_POSITIONS } from "../config/viewPositions";
 
 const Control = ({ viewMode, isMoving }) => {
   const controlRef = useRef();
@@ -30,12 +30,15 @@ const Control = ({ viewMode, isMoving }) => {
 
   useEffect(() => {
     if (controlRef.current && isMoving) {
+      // console.log(VIEW_POSITIONS[viewMode].control.maxDistance)
+      // set max distance
+      controlRef.current.maxDistance = VIEW_POSITIONS[viewMode].control.maxDistance
       new JEASINGS.JEasing(controlRef.current.target)
         .to(
           {
-            x: CAMERA_POSITIONS[viewMode].target.x,
-            y: CAMERA_POSITIONS[viewMode].target.y,
-            z: CAMERA_POSITIONS[viewMode].target.z,
+            x: VIEW_POSITIONS[viewMode].target.x,
+            y: VIEW_POSITIONS[viewMode].target.y,
+            z: VIEW_POSITIONS[viewMode].target.z,
           },
           500
         )
@@ -52,12 +55,12 @@ const Control = ({ viewMode, isMoving }) => {
     <OrbitControls
       ref={controlRef}
       // enablePan={false}
+      enableZoom={true}
       enableDamping={enableDamping}
       dampingFactor={dampingFactor}
       rotateSpeed={rotateSpeed}
       maxPolarAngle={maxPolarAngle}
       minPolarAngle={minPolarAngle}
-      enableZoom={true}
       minAzimuthAngle={minAzimuthAngle}
       maxAzimuthAngle={maxAzimuthAngle}
       maxDistance={maxDistance}

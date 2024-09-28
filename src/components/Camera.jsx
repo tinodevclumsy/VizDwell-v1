@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import { PerspectiveCamera } from "@react-three/drei";
-import { CAMERA_POSITIONS } from "../config/cameraPositions";
+import { VIEW_POSITIONS } from "../config/viewPositions";
 import { useDispatch } from "react-redux";
 import { useFrame } from "@react-three/fiber";
 import { toggleCameraMovement } from "../store/features/camera/cameraSlice";
@@ -19,9 +19,9 @@ const Camera = ({ viewMode, isMoving }) => {
       new JEASINGS.JEasing(cameraRef.current.position)
         .to(
           {
-            x: CAMERA_POSITIONS[viewMode].position.x,
-            y: CAMERA_POSITIONS[viewMode].position.y,
-            z: CAMERA_POSITIONS[viewMode].position.z,
+            x: VIEW_POSITIONS[viewMode].position.x,
+            y: VIEW_POSITIONS[viewMode].position.y,
+            z: VIEW_POSITIONS[viewMode].position.z,
           },
           500
         )
@@ -46,9 +46,9 @@ const Camera = ({ viewMode, isMoving }) => {
 
   const cameraCtl = useControls("PerspectiveCamera", {
     position: {
-      x: CAMERA_POSITIONS.DEFAULT.position.x,
-      y: CAMERA_POSITIONS.DEFAULT.position.y,
-      z: CAMERA_POSITIONS.DEFAULT.position.z,
+      x: VIEW_POSITIONS.DEFAULT.position.x,
+      y: VIEW_POSITIONS.DEFAULT.position.y,
+      z: VIEW_POSITIONS.DEFAULT.position.z,
     },
   });
 
