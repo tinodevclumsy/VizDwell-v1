@@ -30,6 +30,18 @@ export const VIEW_POSITIONS = {
       y: -2.184068485410255,
       z: -0.6554313118264463,
     },
+    boundary: {
+      size: {
+        w: 11,
+        h: 7,
+        d: 16,
+      },
+      position: {
+        x: 9,
+        y: 1.2,
+        z: -5,
+      },
+    },
     control: {
       maxPolarAngle: 1.57,
       minPolarAngle: 1,
