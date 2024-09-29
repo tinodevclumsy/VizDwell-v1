@@ -12,6 +12,7 @@ import Lights from "./Lights";
 import Control from "./Control";
 import ViewWidget from "./ViewWidget";
 import LoadingFallback from "./LoadingFallback";
+import Boundary from "./Boundary";
 
 const PropertyCanvas = () => {
   const viewMode = useSelector((state) => state.camera.viewMode);
@@ -45,6 +46,7 @@ const PropertyCanvas = () => {
           <Lights />
           <Model />
           <Ground />
+          <Boundary />
           <SceneViewButtons />
         </Suspense>
       </Canvas>

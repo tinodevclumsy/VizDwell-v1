@@ -1,23 +1,14 @@
 import { useGLTF } from "@react-three/drei";
-import { useControls } from "leva";
 
 export function Model(props) {
   const { nodes, materials } = useGLTF("/model/20240925-transformed.glb");
-
-  const modelCtl = useControls("model pos", {
-    position: {
-      x: 0,
-      y: -26,
-      z: 0,
-    },
-  });
 
   return (
     <group
       {...props}
       dispose={null}
       rotation={[0, Math.PI, 0]}
-      position={[modelCtl.position.x, modelCtl.position.y, modelCtl.position.z]}
+      position={[0, -26, 0]}
     >
       <mesh
         geometry={nodes.Plane.geometry}

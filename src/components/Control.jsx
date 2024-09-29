@@ -48,7 +48,7 @@ const Control = ({ viewMode, isMoving }) => {
   }, [viewMode, isMoving]);
 
   useFrame(() => {
-    console.log("ctrl", controlRef.current.target);
+    // console.log("ctrl", controlRef.current.target);
   });
 
   return (
