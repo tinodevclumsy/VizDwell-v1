@@ -1,5 +1,6 @@
-import HomeIcon from "./icons/Home";
+import HomeIcon from "../icons/Home";
 import styled, { keyframes } from "styled-components";
+
 const bgAnimation = keyframes`
   0% {
     height : 100%;

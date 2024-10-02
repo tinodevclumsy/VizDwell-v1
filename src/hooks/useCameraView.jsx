@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   setCameraView,
   toggleCameraMovement,
@@ -10,8 +10,6 @@ import { VIEW_POSITIONS } from "../config/viewPositions";
 export const useCameraView = () => {
   const dispatch = useDispatch();
 
-  const viewMode = useSelector((state) => state.camera.viewMode);
-
   const changeView = (v) => {
     dispatch(setCameraView(v));
     dispatch(toggleCameraMovement());
@@ -21,9 +19,8 @@ export const useCameraView = () => {
     dispatch(setFrontView(v));
   };
 
-  const getViewBoundary = () => {
-    console.log(viewMode)
-    const { size, position } = VIEW_POSITIONS[viewMode].boundary;
+  const getViewBoundary = (mode) => {
+    const { size, position } = VIEW_POSITIONS[mode].boundary;
 
     const roomBounds = new Box3(
       new Vector3(
@@ -41,5 +38,5 @@ export const useCameraView = () => {
     return roomBounds;
   };
 
-  return { viewMode, changeView, changeIsFrontView, getViewBoundary };
+  return { changeView, changeIsFrontView, getViewBoundary };
 };

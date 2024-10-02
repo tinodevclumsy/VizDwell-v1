@@ -1,7 +1,6 @@
-import TheHeader from "./components/TheHeader";
+import TheHeader from "./components/ui/TheHeader";
 import PropertyCanvas from "./components/PropertyCanvas";
 import "./App.css";
-import LoadingFallback from "./components/LoadingFallback";
 
 function App() {
   return (

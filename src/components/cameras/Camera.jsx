@@ -1,17 +1,18 @@
 import { useRef, useEffect } from "react";
 import { PerspectiveCamera } from "@react-three/drei";
-import { VIEW_POSITIONS } from "../config/viewPositions";
+import { VIEW_POSITIONS } from "../../config/viewPositions";
 import { useDispatch } from "react-redux";
 import { useFrame } from "@react-three/fiber";
-import { toggleCameraMovement } from "../store/features/camera/cameraSlice";
-import { useControls } from "leva";
-import { useCameraView } from "../hooks/useCameraView";
+import { toggleCameraMovement } from "../../store/features/camera/cameraSlice";
+import { useCameraView } from "../../hooks/useCameraView";
 import JEASINGS from "jeasings";
+import ControlHelper from "../utils/ControlHelper";
 
 const Camera = ({ viewMode, isMoving }) => {
   const cameraRef = useRef();
   const dispatch = useDispatch();
   const { changeIsFrontView, getViewBoundary } = useCameraView();
+  const { cameraCtl } = ControlHelper();
 
   useEffect(() => {
     if (cameraRef.current && isMoving) {
@@ -37,26 +38,17 @@ const Camera = ({ viewMode, isMoving }) => {
     JEASINGS.update();
 
     if (viewMode !== "DEFAULT" && !isMoving) {
-      const bounds = getViewBoundary();
+      const bounds = getViewBoundary(viewMode);
 
       if (!bounds.containsPoint(cameraRef.current.position)) {
         cameraRef.current.position.clamp(bounds.min, bounds.max);
       }
     }
-    // if (cameraRef.current.position.x < 5) {
-    //   console.log("remove view button");
-    //   changeIsFrontView(false);
-    // } else {
-    //   changeIsFrontView(true);
-    // }
-  });
-
-  const cameraCtl = useControls("PerspectiveCamera", {
-    position: {
-      x: VIEW_POSITIONS.DEFAULT.position.x,
-      y: VIEW_POSITIONS.DEFAULT.position.y,
-      z: VIEW_POSITIONS.DEFAULT.position.z,
-    },
+    if (cameraRef.current.position.x < 5) {
+      changeIsFrontView(false);
+    } else {
+      changeIsFrontView(true);
+    }
   });
 
   return (
