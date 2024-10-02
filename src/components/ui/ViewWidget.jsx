@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { useCameraView } from "../hooks/useCameraView";
-import { VIEW_POSITIONS } from "../config/viewPositions";
+import { useCameraView } from "../../hooks/useCameraView";
+import { VIEW_POSITIONS } from "../../config/viewPositions";
 
 const WidgetContainer = styled.div`
   position: absolute;

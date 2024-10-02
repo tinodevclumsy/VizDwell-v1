@@ -1,8 +1,8 @@
 import { Html } from "@react-three/drei";
 import { useSelector } from "react-redux";
-import ViewButton from "./common/ViewButton";
-import { useCameraView } from "../hooks/useCameraView";
-import theme from "../utils/theme";
+import ViewButton from "./ViewButton";
+import { useCameraView } from "../../hooks/useCameraView";
+import theme from "../../utils/theme";
 import { ThemeProvider } from "styled-components";
 
 const SceneViewButtons = () => {

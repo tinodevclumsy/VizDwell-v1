@@ -1,24 +1,16 @@
 import { useRef } from "react";
 import { useHelper } from "@react-three/drei";
-import { useControls } from "leva";
 import { HemisphereLightHelper, DirectionalLightHelper } from "three";
+import ControlHelper from "../utils/ControlHelper";
 
 const Lights = () => {
   const hemisphereLightRef = useRef();
   const directionalLightRef = useRef();
 
+  const { directionalLightCtl } = ControlHelper();
+
   useHelper(hemisphereLightRef, HemisphereLightHelper, 15);
   useHelper(directionalLightRef, DirectionalLightHelper, 5);
-
-  const directionalCtl = useControls("Directional Light", {
-    visible: true,
-    position: {
-      x: 15,
-      y: 18,
-      z: 15,
-    },
-    castShadow: true,
-  });
 
   return (
     <>
@@ -30,13 +22,13 @@ const Lights = () => {
       />
       <directionalLight
         ref={directionalLightRef}
-        visible={directionalCtl.visible}
+        visible={directionalLightCtl.visible}
         position={[
-          directionalCtl.position.x,
-          directionalCtl.position.y,
-          directionalCtl.position.z,
+          directionalLightCtl.position.x,
+          directionalLightCtl.position.y,
+          directionalLightCtl.position.z,
         ]}
-        castShadow={directionalCtl.castShadow}
+        castShadow={directionalLightCtl.castShadow}
         intensity={1}
         shadow-mapSize-width={1024} // Resolution of the shadow map
         shadow-mapSize-height={1024}
