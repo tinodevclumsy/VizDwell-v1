@@ -79,7 +79,7 @@ const CameraController = ({ viewMode, isMoving }) => {
   return (
     <>
       <Camera ref={cameraRef} />
-      <OrbitControlManager ref={controlRef} />
+      <OrbitControlManager ref={controlRef} viewMode={viewMode} />
     </>
   );
 };

@@ -2,8 +2,9 @@ import { forwardRef } from "react";
 import { OrbitControls } from "@react-three/drei";
 import ControlHelper from "../utils/ControlHelper";
 
-const OrbitControlManager = forwardRef((_, ref) => {
+const OrbitControlManager = forwardRef((props, ref) => {
   const { controlCtrl } = ControlHelper();
+  const { viewMode } = props;
 
   return (
     <OrbitControls
@@ -14,8 +15,8 @@ const OrbitControlManager = forwardRef((_, ref) => {
       rotateSpeed={controlCtrl.rotateSpeed}
       maxPolarAngle={controlCtrl.maxPolarAngle}
       minPolarAngle={controlCtrl.minPolarAngle}
-      minAzimuthAngle={controlCtrl.minAzimuthAngle}
-      maxAzimuthAngle={controlCtrl.maxAzimuthAngle}
+      minAzimuthAngle={viewMode === 'DEFAULT' ? controlCtrl.minAzimuthAngle : undefined}
+      maxAzimuthAngle={viewMode === 'DEFAULT' ? controlCtrl.maxAzimuthAngle : undefined}
       maxDistance={controlCtrl.maxDistance}
     />
   );
