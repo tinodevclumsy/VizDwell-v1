@@ -1,8 +1,7 @@
 import { useGLTF } from "@react-three/drei";
 
 export function Model(props) {
-  const { nodes, materials } = useGLTF("/model/20240925-transformed.glb");
-
+  const { nodes, materials } = useGLTF("/model/20241001-transformed.glb");
   return (
     <group
       {...props}
@@ -12,8 +11,8 @@ export function Model(props) {
     >
       <mesh
         geometry={nodes.Plane.geometry}
-        material={materials["Material.002"]}
-        position={[12.886, 4.894, 12.575]}
+        material={materials.Brick}
+        position={[12.886, 4.894, 12.547]}
         rotation={[Math.PI / 2, 0, 0]}
       />
       <mesh
@@ -23,10 +22,40 @@ export function Model(props) {
         rotation={[Math.PI / 2, 0, 0]}
       />
       <mesh
-        geometry={nodes.Plane005.geometry}
-        material={materials.PaletteMaterial004}
-        position={[-16.009, 13, -4.447]}
+        geometry={nodes.Plane009.geometry}
+        material={materials.PaletteMaterial003}
+        position={[-15.988, 13, -14.208]}
         rotation={[0, 0, -Math.PI / 2]}
+      />
+      <mesh
+        geometry={nodes['Basic_Wall_iW2w_-_6"_WOOD_WALL_632022'].geometry}
+        material={nodes['Basic_Wall_iW2w_-_6"_WOOD_WALL_632022'].material}
+        scale={0.305}
+      />
+      <mesh
+        geometry={nodes.Plane013.geometry}
+        material={materials.Floor}
+        position={[-14.031, 22.023, 1.907]}
+      />
+      <mesh
+        geometry={nodes.Plane016.geometry}
+        material={materials["Lighter Black"]}
+        position={[0.614, 26.315, -10.521]}
+        rotation={[Math.PI / 2, 0, -Math.PI / 2]}
+        scale={3.61}
+      />
+      <mesh
+        geometry={nodes.Plane015.geometry}
+        material={materials["Black Line"]}
+        position={[-4.809, 26.537, -14.535]}
+        rotation={[Math.PI / 2, 0, Math.PI]}
+        scale={[1.831, 1.956, 1.956]}
+      />
+      <mesh
+        geometry={nodes.Plane019.geometry}
+        material={materials["Bedroom Floor"]}
+        position={[-4.934, 22.037, -10.346]}
+        scale={4.094}
       />
       <mesh
         geometry={
@@ -50,22 +79,29 @@ export function Model(props) {
       />
       <mesh
         geometry={
-          nodes[
-            "FamilyInstance_Plumbing_Fixtures_M_Tub-Rectangular-3D_<632156_M"
-          ].geometry
+          nodes["FamilyInstance_Furniture_M_Sofa-Corbu_<662053_Sofa<"].geometry
         }
-        material={materials.PaletteMaterial003}
+        material={materials["Leather - SOFA"]}
         position={[-8.123, 1, -20.023]}
         rotation={[-Math.PI / 2, 0, 0]}
       />
       <mesh
-        geometry={nodes['Wall_Walls_<632022_iW2w_-_6"_WOOD_WALL<'].geometry}
-        material={nodes['Wall_Walls_<632022_iW2w_-_6"_WOOD_WALL<'].material}
+        geometry={
+          nodes["FamilyInstance_Furniture_Table_-_Misc32_<632104_Table_-_Misc<"]
+            .geometry
+        }
+        material={materials["WOOD TABLE"]}
         position={[-8.123, 1, -20.023]}
         rotation={[-Math.PI / 2, 0, 0]}
+      />
+      <mesh
+        geometry={nodes.Cube002.geometry}
+        material={materials["Black Furniture"]}
+        position={[-0.731, 23.38, -13.412]}
+        scale={0.888}
       />
     </group>
   );
 }
 
-useGLTF.preload("/model/20240925-transformed.glb");
+useGLTF.preload("/model/20241001-transformed.glb");
