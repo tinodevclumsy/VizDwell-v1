@@ -57,7 +57,11 @@ const CameraController = ({ viewMode, isMoving }) => {
 
     JEASINGS.update();
 
-    if (viewMode !== "DEFAULT" && !isMoving) {
+    if (
+      viewMode !== "DEFAULT" &&
+      !isMoving &&
+      VIEW_POSITIONS[viewMode].boundary
+    ) {
       const bounds = getViewBoundary(viewMode);
       if (!bounds.containsPoint(cameraRef.current.position)) {
         // clamp camera

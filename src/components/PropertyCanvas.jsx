@@ -10,8 +10,6 @@ import ExitButton from "./ui/ExitButton";
 import Lights from "./lights/Lights";
 import ViewWidget from "./ui/ViewWidget";
 import LoadingFallback from "./ui/LoadingFallback";
-import Boundary from "./utils/BoundaryHelper";
-
 import CameraController from "./cameras/CameraController";
 
 const PropertyCanvas = () => {
@@ -45,7 +43,6 @@ const PropertyCanvas = () => {
           <Lights />
           <Model />
           <Ground />
-          <Boundary />
           <SceneViewButtons />
         </Suspense>
       </Canvas>

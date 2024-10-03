@@ -86,6 +86,18 @@ export const VIEW_POSITIONS = {
       maxAzimuthAngle: 3.5,
       maxDistance: 55,
     },
+    boundary: {
+      size: {
+        w: 9.5,
+        h: 7,
+        d: 9,
+      },
+      position: {
+        x: 5,
+        y: 1.2,
+        z: 10,
+      },
+    },
   },
   BEDROOM: {
     name: "bedroom",
@@ -98,6 +110,18 @@ export const VIEW_POSITIONS = {
       x: -0.7274615707826846,
       y: -2.1056511543599408,
       z: -0.44409231423614043,
+    },
+    boundary: {
+      size: {
+        w: 8.5,
+        h: 7,
+        d: 14,
+      },
+      position: {
+        x: -3.5,
+        y: 1.2,
+        z: -7,
+      },
     },
     control: {
       maxPolarAngle: 1.57,
@@ -117,6 +141,18 @@ export const VIEW_POSITIONS = {
       x: -4.426046417333625,
       y: -1.026579666262824,
       z: 9.140135582787579,
+    },
+    boundary: {
+      size: {
+        w: 4.8,
+        h: 7,
+        d: 7.5,
+      },
+      position: {
+        x: -3.5,
+        y: 1.2,
+        z: 10,
+      },
     },
     control: {
       maxPolarAngle: 1.57,
