@@ -7,12 +7,12 @@ import { Model } from "./models/Model";
 import Ground from "./models/Ground";
 import SceneViewButtons from "./ui/SceneViewButtons";
 import ExitButton from "./ui/ExitButton";
-import Camera from "./cameras/Camera";
 import Lights from "./lights/Lights";
-import OrbitControl from "./cameras/OrbitControl";
 import ViewWidget from "./ui/ViewWidget";
 import LoadingFallback from "./ui/LoadingFallback";
 import Boundary from "./utils/BoundaryHelper";
+
+import CameraController from "./cameras/CameraController";
 
 const PropertyCanvas = () => {
   const viewMode = useSelector((state) => state.camera.viewMode);
@@ -41,8 +41,7 @@ const PropertyCanvas = () => {
         >
           <Perf position="bottom-right" />
           <Environment preset="sunset" background backgroundBlurriness={1} />
-          <Camera viewMode={viewMode} isMoving={isMoving} />
-          <OrbitControl viewMode={viewMode} isMoving={isMoving} />
+          <CameraController viewMode={viewMode} isMoving={isMoving} />
           <Lights />
           <Model />
           <Ground />
