@@ -38,7 +38,7 @@ const PropertyCanvas = () => {
           }
         >
           <Perf position="bottom-right" />
-          <Environment preset="sunset" background backgroundBlurriness={1} />
+          {/* <Environment preset="sunset" background backgroundBlurriness={1} /> */}
           <CameraController viewMode={viewMode} isMoving={isMoving} />
           <Lights />
           <Model />

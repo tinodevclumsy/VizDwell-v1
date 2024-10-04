@@ -1,7 +1,7 @@
 import { useGLTF } from "@react-three/drei";
 
 export function Model(props) {
-  const { nodes, materials } = useGLTF("/model/20241001-transformed.glb");
+  const { nodes, materials } = useGLTF("/model/20241004-transformed.glb");
   return (
     <group
       {...props}
@@ -10,15 +10,9 @@ export function Model(props) {
       position={[0, -26, 0]}
     >
       <mesh
-        geometry={nodes.Plane.geometry}
-        material={materials.Brick}
-        position={[12.886, 4.894, 12.547]}
-        rotation={[Math.PI / 2, 0, 0]}
-      />
-      <mesh
-        geometry={nodes.Plane001.geometry}
+        geometry={nodes.Plane002.geometry}
         material={materials.White}
-        position={[-1.796, 17.29, 14.046]}
+        position={[-1.796, 27.29, 14.046]}
         rotation={[Math.PI / 2, 0, 0]}
       />
       <mesh
@@ -58,23 +52,34 @@ export function Model(props) {
         scale={4.094}
       />
       <mesh
-        geometry={
-          nodes[
-            "FamilyInstance_Casework_12_Casework_Counter_Top_EDR1_<632173_24"
-          ].geometry
-        }
+        geometry={nodes.Cube012.geometry}
+        material={materials.Gloss}
+        position={[-2.94, 23.023, 7.218]}
+      />
+      <mesh
+        geometry={nodes.Cube013.geometry}
+        material={materials.Golden}
+        position={[-3.953, 24.829, 7.541]}
+        scale={[0.013, 0.035, 0.379]}
+      />
+      <mesh
+        geometry={nodes.Cube060.geometry}
         material={materials.PaletteMaterial001}
-        position={[-8.123, 1, -20.023]}
-        rotation={[-Math.PI / 2, 0, 0]}
+        position={[-2.938, 27.584, 3.673]}
+      />
+      <mesh
+        geometry={nodes.Plane.geometry}
+        material={materials.Brick}
+        position={[12.094, 2, 12.63]}
+        rotation={[Math.PI / 2, 0, 0]}
       />
       <mesh
         geometry={
-          nodes[
-            "FamilyInstance_Doors_MAHG_Suite_Door_Ext_Double_Sliding_<632075"
-          ].geometry
+          nodes["FamilyInstance_Doors_MAHG_Suite_Door_Ext_Double_Sliding_<63"]
+            .geometry
         }
         material={materials.PaletteMaterial002}
-        position={[-8.123, 1, -20.023]}
+        position={[-8.123, 11, -20.023]}
         rotation={[-Math.PI / 2, 0, 0]}
       />
       <mesh
@@ -87,11 +92,11 @@ export function Model(props) {
       />
       <mesh
         geometry={
-          nodes["FamilyInstance_Furniture_Table_-_Misc32_<632104_Table_-_Misc<"]
+          nodes["FamilyInstance_Furniture_Table_-_Misc32_<632104_Table_-_Mi"]
             .geometry
         }
         material={materials["WOOD TABLE"]}
-        position={[-8.123, 1, -20.023]}
+        position={[-8.123, 11, -20.023]}
         rotation={[-Math.PI / 2, 0, 0]}
       />
       <mesh
@@ -104,4 +109,4 @@ export function Model(props) {
   );
 }
 
-useGLTF.preload("/model/20241001-transformed.glb");
+useGLTF.preload("/model/20241004-transformed.glb");
