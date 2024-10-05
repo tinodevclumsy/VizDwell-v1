@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import {
   setCameraView,
   toggleCameraMovement,
+  toggleMovementSide,
   setFrontView,
 } from "../store/features/camera/cameraSlice";
 import { Box3, Vector3 } from "three";
@@ -11,12 +12,16 @@ export const useCameraView = () => {
   const dispatch = useDispatch();
 
   const changeView = (v) => {
-    dispatch(setCameraView(v));
     dispatch(toggleCameraMovement());
+    dispatch(setCameraView(v));
   };
 
   const changeIsFrontView = (v) => {
     dispatch(setFrontView(v));
+  };
+
+  const toggleSide = () => {
+    dispatch(toggleMovementSide());
   };
 
   const getViewBoundary = (mode) => {
@@ -38,5 +43,5 @@ export const useCameraView = () => {
     return roomBounds;
   };
 
-  return { changeView, changeIsFrontView, getViewBoundary };
+  return { changeView, changeIsFrontView, getViewBoundary, toggleSide };
 };

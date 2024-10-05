@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Environment, Html } from "@react-three/drei";
+import { Html } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { useSelector } from "react-redux";
 import { Model } from "./models/Model";
@@ -10,19 +10,20 @@ import ExitButton from "./ui/ExitButton";
 import Lights from "./lights/Lights";
 import ViewWidget from "./ui/ViewWidget";
 import LoadingFallback from "./ui/LoadingFallback";
-import Boundary from "./utils/BoundaryHelper";
-
 import CameraController from "./cameras/CameraController";
+import SkyBackground from "./models/Sky";
 
 const PropertyCanvas = () => {
   const viewMode = useSelector((state) => state.camera.viewMode);
   const isMoving = useSelector((state) => state.camera.isMoving);
+  const isMovingToInside = useSelector((state) => state.camera.isMovingToInside);
 
   return (
     <>
       {viewMode !== "DEFAULT" && <ViewWidget viewMode={viewMode} />}
       <ExitButton viewMode={viewMode} isMoving={isMoving} />
       <Canvas shadows gl={{ antialias: true }}>
+        <fog attach="fog" color="white" near={115} far={150} />
         <Suspense
           fallback={
             <Html
@@ -40,13 +41,16 @@ const PropertyCanvas = () => {
           }
         >
           <Perf position="bottom-right" />
-          <Environment preset="sunset" background backgroundBlurriness={1} />
-          <CameraController viewMode={viewMode} isMoving={isMoving} />
+          <CameraController
+            viewMode={viewMode}
+            isMoving={isMoving}
+            isMovingToInside={isMovingToInside}
+          />
           <Lights />
           <Model />
           <Ground />
-          <Boundary />
           <SceneViewButtons />
+          <SkyBackground />
         </Suspense>
       </Canvas>
     </>

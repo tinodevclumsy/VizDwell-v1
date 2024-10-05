@@ -4,14 +4,14 @@ import { useControls } from "leva";
 const Boundary = () => {
   const ctrl = useControls("room", {
     size: {
-      w: 11,
+      w: 9.5,
       h: 7,
-      d: 16,
+      d: 9,
     },
     position: {
-      x: 9,
+      x: 5,
       y: 1.2,
-      z: -5,
+      z: 10,
     },
   });
 
@@ -20,7 +20,7 @@ const Boundary = () => {
       args={[ctrl.size.w, ctrl.size.h, ctrl.size.d]}
       position={[ctrl.position.x, ctrl.position.y, ctrl.position.z]}
     >
-      <meshStandardMaterial color="blue" wireframe />{" "}
+      <meshStandardMaterial color="blue" wireframe />
     </Box>
   );
 };
