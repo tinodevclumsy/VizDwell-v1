@@ -24,9 +24,9 @@ const ControlHelper = () => {
   const directionalLightCtl = useControls("Directional Light", {
     visible: true,
     position: {
-      x: 15,
-      y: 18,
-      z: 15,
+      x: 22,
+      y: 28,
+      z: 23,
     },
     castShadow: true,
   });
