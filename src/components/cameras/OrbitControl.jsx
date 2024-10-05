@@ -28,6 +28,7 @@ const OrbitControlManager = forwardRef((props, ref) => {
         viewMode === "DEFAULT" ? controlCtrl.maxAzimuthAngle : undefined
       }
       maxDistance={controlCtrl.maxDistance}
+      minDistance={viewMode === "DEFAULT" ? controlCtrl.minDistance : 0}
     />
   );
 });

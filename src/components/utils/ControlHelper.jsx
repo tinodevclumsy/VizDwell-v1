@@ -19,6 +19,7 @@ const ControlHelper = () => {
     minAzimuthAngle: { value: 0.5, min: -Math.PI, max: 2, step: 0.01 },
     maxAzimuthAngle: { value: 3.5, min: 0, max: Math.PI * 2, step: 0.01 },
     maxDistance: { value: 55, min: 0, max: 100, step: 1 },
+    minDistance: { value: 24, min: 0, max: 100, step: 1 },
   });
 
   const directionalLightCtl = useControls("Directional Light", {
