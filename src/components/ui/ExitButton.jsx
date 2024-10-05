@@ -63,7 +63,6 @@ const ExitButton = ({ viewMode, isMoving }) => {
 
   return (
     viewMode !== "DEFAULT" &&
-    viewMode !== "BALCONY" &&
     !isMoving && (
       <ExitBtnContainer>
         <ExitBtn onClick={() => changeView("DEFAULT")}>EXIT</ExitBtn>

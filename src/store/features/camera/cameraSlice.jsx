@@ -6,6 +6,7 @@ const cameraSlice = createSlice({
     viewMode: "DEFAULT",
     isMoving: false,
     isFrontView: true,
+    isMovingToInside: false,
   },
   reducers: {
     setCameraView: (state, action) => {
@@ -14,11 +15,14 @@ const cameraSlice = createSlice({
     setFrontView: (state, action) => {
       state.isFrontView = action.payload;
     },
+    toggleMovementSide: (state) => {
+      state.isMovingToInside = !state.isMovingToInside
+    },
     toggleCameraMovement: (state) => {
       state.isMoving = !state.isMoving;
     },
   },
 });
-export const { setCameraView, toggleCameraMovement, setFrontView } =
+export const { setCameraView, toggleCameraMovement, setFrontView, toggleMovementSide } =
   cameraSlice.actions;
 export default cameraSlice.reducer;

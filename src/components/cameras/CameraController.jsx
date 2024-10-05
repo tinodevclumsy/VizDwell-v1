@@ -9,16 +9,35 @@ import { toggleCameraMovement } from "../../store/features/camera/cameraSlice";
 import { useCameraView } from "../../hooks/useCameraView";
 import { Vector3 } from "three";
 
-const CameraController = ({ viewMode, isMoving }) => {
+const CameraController = ({ viewMode, isMoving, isMovingToInside }) => {
   const cameraRef = useRef();
   const controlRef = useRef();
 
-  const { changeIsFrontView, getViewBoundary } = useCameraView();
+  const { changeIsFrontView, getViewBoundary, changeView, toggleSide } =
+    useCameraView();
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (isMovingToInside) {
+      console.log("move", cameraRef.current);
+      new JEASINGS.JEasing(cameraRef.current.position)
+        .to(
+          {
+            x: 54.996322411578845,
+            y: 0.04379796909032789,
+            z: 0.6345099994116014,
+          },
+          1000
+        )
+        .easing(JEASINGS.Cubic.Out)
+        .onComplete(() => {
+          changeView("LIVING_ROOM");
+          toggleSide();
+        })
+        .start();
+    }
     // perspective camera
-    if (cameraRef.current && isMoving) {
+    if (cameraRef.current && isMoving && !isMovingToInside) {
       console.log("aaaaa");
       new JEASINGS.JEasing(cameraRef.current.position)
         .to(
@@ -27,7 +46,7 @@ const CameraController = ({ viewMode, isMoving }) => {
             y: VIEW_POSITIONS[viewMode].position.y,
             z: VIEW_POSITIONS[viewMode].position.z,
           },
-          500
+          750
         )
         .easing(JEASINGS.Cubic.Out)
         .onComplete(() => {
@@ -36,7 +55,7 @@ const CameraController = ({ viewMode, isMoving }) => {
         .start();
     }
     // orbit control
-    if (controlRef.current && isMoving) {
+    if (controlRef.current && isMoving && !isMovingToInside) {
       new JEASINGS.JEasing(controlRef.current.target)
         .to(
           {
@@ -49,7 +68,7 @@ const CameraController = ({ viewMode, isMoving }) => {
         .easing(JEASINGS.Cubic.Out)
         .start();
     }
-  }, [viewMode, isMoving, dispatch]);
+  }, [viewMode, isMoving, dispatch, isMovingToInside, changeView, toggleSide]);
 
   useFrame(() => {
     // console.log("ctrl", controlRef.current.target);

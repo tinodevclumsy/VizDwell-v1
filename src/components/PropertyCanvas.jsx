@@ -16,6 +16,7 @@ import SkyBackground from "./models/Sky";
 const PropertyCanvas = () => {
   const viewMode = useSelector((state) => state.camera.viewMode);
   const isMoving = useSelector((state) => state.camera.isMoving);
+  const isMovingToInside = useSelector((state) => state.camera.isMovingToInside);
 
   return (
     <>
@@ -40,7 +41,11 @@ const PropertyCanvas = () => {
           }
         >
           <Perf position="bottom-right" />
-          <CameraController viewMode={viewMode} isMoving={isMoving} />
+          <CameraController
+            viewMode={viewMode}
+            isMoving={isMoving}
+            isMovingToInside={isMovingToInside}
+          />
           <Lights />
           <Model />
           <Ground />

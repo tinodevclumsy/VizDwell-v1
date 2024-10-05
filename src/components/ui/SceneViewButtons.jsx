@@ -6,16 +6,16 @@ import theme from "../../utils/theme";
 import { ThemeProvider } from "styled-components";
 
 const SceneViewButtons = () => {
-  const { changeView } = useCameraView();
+  const {toggleSide } = useCameraView();
   const viewMode = useSelector((state) => state.camera.viewMode);
   const isFrontView = useSelector((state) => state.camera.isFrontView);
 
   return (
     <>
-      {viewMode !== "LIVING_ROOM" && isFrontView && (
+      {viewMode === "DEFAULT" && isFrontView && (
         <Html position={[12, 0, -0.5]}>
           <ThemeProvider theme={theme}>
-            <ViewButton onClick={() => changeView("LIVING_ROOM")} />
+            <ViewButton onClick={toggleSide} />
           </ThemeProvider>
         </Html>
       )}
