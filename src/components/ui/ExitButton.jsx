@@ -1,5 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { useCameraView } from "../../hooks/useCameraView";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const pulse = keyframes`
   from {
@@ -25,17 +27,12 @@ const ExitBtnContainer = styled.div`
 `;
 
 const ExitBtn = styled.button`
-  width: 55px;
-  height: 55px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  color: #fff;
-  background: linear-gradient(
-    to bottom,
-    #fff 0%,
-    ${({ theme }) => theme.colors.secondary} 100%
-  );
-  box-shadow: 0 4px 4px rgba(255, 255, 255, 0.3);
-  border: 1px solid #fff;
+  background: ${({ theme }) => theme.colors.primary};
+  border: 1px solid ${({ theme }) => theme.colors.primary};
+  color:  ${({ theme }) => theme.colors.deem_white};
   position: relative;
   display: flex;
   justify-content: center;
@@ -45,10 +42,10 @@ const ExitBtn = styled.button`
     display: block;
     position: absolute;
     z-index: -1;
-    width: 150%;
-    height: 150%;
+    width: 135%;
+    height: 135%;
     border-radius: 50%;
-    background: ${({ theme }) => theme.colors.secondary};
+    background: ${({ theme }) => theme.colors.primary};
     opacity: 0;
     content: "";
   }
@@ -65,7 +62,9 @@ const ExitButton = ({ viewMode, isMoving }) => {
     viewMode !== "DEFAULT" &&
     !isMoving && (
       <ExitBtnContainer>
-        <ExitBtn onClick={() => changeView("DEFAULT")}>EXIT</ExitBtn>
+        <ExitBtn onClick={() => changeView("DEFAULT")}>
+          <FontAwesomeIcon icon={faXmark} />
+        </ExitBtn>
       </ExitBtnContainer>
     )
   );

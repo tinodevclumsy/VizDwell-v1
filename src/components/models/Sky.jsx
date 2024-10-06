@@ -5,8 +5,8 @@ import * as THREE from "three";
 const SkyBackground = () => {
   const { gl } = useThree();
   useEffect(() => {
-    gl.toneMapping = THREE.CineonToneMapping;
-    gl.toneMappingExposure = 1.5;
+    gl.toneMapping = THREE.ACESFilmicToneMapping;
+    gl.toneMappingExposure = 1;
   }, []);
 
   return (
