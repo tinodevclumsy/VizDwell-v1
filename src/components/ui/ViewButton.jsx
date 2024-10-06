@@ -1,4 +1,6 @@
 import styled, { keyframes } from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const pulse = keyframes`
   from {
@@ -15,12 +17,9 @@ const ViewBtn = styled.button`
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: linear-gradient(
-    to bottom,
-    #fff 0%,
-    ${({ theme }) => theme.colors.secondary} 100%
-  );
+  background: ${({ theme }) => theme.colors.primary};
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+  color:  ${({ theme }) => theme.colors.deem_white};
   position: relative;
   display: flex;
   justify-content: center;
@@ -40,7 +39,11 @@ const ViewBtn = styled.button`
 `;
 
 const ViewButton = ({ onClick }) => {
-  return <ViewBtn onClick={onClick} />;
+  return (
+    <ViewBtn onClick={onClick}>
+      <FontAwesomeIcon icon={faMagnifyingGlass} />
+    </ViewBtn>
+  );
 };
 
 export default ViewButton;

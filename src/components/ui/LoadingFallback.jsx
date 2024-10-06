@@ -24,14 +24,17 @@ const IconOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #fff;
+  background-color: #1d2b41;
   z-index: 10;
-  animation: ${bgAnimation} .5s ease-in-out infinite; /* infinite로 애니메이션 반복 */
+  animation: ${bgAnimation} 0.5s ease-in-out infinite; /* infinite로 애니메이션 반복 */
 `;
 const Message = styled.p`
   text-transform: uppercase;
   margin-top: 10px;
-  font-weight: 600;
+  font-weight: 400;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  color: #fff;
 `;
 
 const LoadingFallback = () => {
