@@ -26,7 +26,7 @@ const IconOverlay = styled.div`
   height: 100%;
   background-color: #1d2b41;
   z-index: 10;
-  animation: ${bgAnimation} 0.5s ease-in-out infinite; /* infinite로 애니메이션 반복 */
+  animation: ${bgAnimation} 0.5s ease-in-out infinite; 
 `;
 const Message = styled.p`
   text-transform: uppercase;

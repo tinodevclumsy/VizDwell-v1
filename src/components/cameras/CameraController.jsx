@@ -89,7 +89,7 @@ const CameraController = ({ viewMode, isMoving, isMovingToInside }) => {
         // make view point to center of room
         const targetPosition = new Vector3();
         bounds.getCenter(targetPosition);
-        controlRef.current.target.lerp(targetPosition, 0.05); // 보간 속도 0.05
+        controlRef.current.target.lerp(targetPosition, 0.05); 
         controlRef.current.update();
       }
     }

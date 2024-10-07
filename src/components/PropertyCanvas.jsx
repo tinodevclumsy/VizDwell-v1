@@ -1,10 +1,9 @@
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Environment, Html } from "@react-three/drei";
-import { Perf } from "r3f-perf";
+// import { Perf } from "r3f-perf";
 import { useSelector } from "react-redux";
-// import { Model } from "./models/Model";
-import { Model } from "./models/20241006";
+import { Model } from "./models/Model";
 import Ground from "./models/Ground";
 import SceneViewButtons from "./ui/SceneViewButtons";
 import ExitButton from "./ui/ExitButton";
@@ -43,7 +42,7 @@ const PropertyCanvas = () => {
             </Html>
           }
         >
-          <Perf position="bottom-right" />
+          {/* <Perf position="bottom-right" /> */}
           <CameraController
             viewMode={viewMode}
             isMoving={isMoving}

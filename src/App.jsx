@@ -1,10 +1,12 @@
 import TheHeader from "./components/ui/TheHeader";
 import PropertyCanvas from "./components/PropertyCanvas";
 import "./App.css";
+import { Leva } from 'leva'
 
 function App() {
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
+      <Leva hidden />
       <TheHeader />
       <div
         style={{

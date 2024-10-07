@@ -26,9 +26,7 @@ const WidgetButton = styled.button`
   width: 100%;
   background: transparent;
   color: #fff;
-  /* margin: 5px 0; */
   padding: 10px 20px;
-  /* border-radius: 5px; */
   border: none;
   cursor: pointer;
   text-transform: uppercase;
