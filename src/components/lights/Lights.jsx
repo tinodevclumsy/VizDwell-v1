@@ -16,9 +16,9 @@ const Lights = () => {
     <>
       <hemisphereLight
         ref={hemisphereLightRef}
-        skyColor={"#fff"}
+        skyColor={"#ffd27f"}
         groundColor={"#444"}
-        intensity={1}
+        intensity={.5}
       />
       <directionalLight
         ref={directionalLightRef}

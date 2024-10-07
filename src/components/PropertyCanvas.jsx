@@ -1,9 +1,10 @@
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Html } from "@react-three/drei";
+import { Environment, Html } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { useSelector } from "react-redux";
-import { Model } from "./models/Model";
+// import { Model } from "./models/Model";
+import { Model } from "./models/20241006";
 import Ground from "./models/Ground";
 import SceneViewButtons from "./ui/SceneViewButtons";
 import ExitButton from "./ui/ExitButton";
@@ -16,7 +17,9 @@ import SkyBackground from "./models/Sky";
 const PropertyCanvas = () => {
   const viewMode = useSelector((state) => state.camera.viewMode);
   const isMoving = useSelector((state) => state.camera.isMoving);
-  const isMovingToInside = useSelector((state) => state.camera.isMovingToInside);
+  const isMovingToInside = useSelector(
+    (state) => state.camera.isMovingToInside
+  );
 
   return (
     <>
@@ -50,6 +53,11 @@ const PropertyCanvas = () => {
           <Model />
           <Ground />
           <SceneViewButtons />
+          <Environment
+            files="./images/sky.hdr"
+            background
+            backgroundBlurriness={1}
+          />
           <SkyBackground />
         </Suspense>
       </Canvas>
