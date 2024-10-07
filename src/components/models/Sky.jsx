@@ -12,14 +12,14 @@ const SkyBackground = () => {
   return (
     <>
       <Sky
-        sunPosition={[0, 1.5, -10]} // 햇빛 위치
+        sunPosition={[0, 1.5, -10]}
         distance={450000}
         azimuth={180}
         mieCoefficient={0.005}
         mieDirectionalG={0.7}
         elevation={2}
-        turbidity={12} // 하늘의 탁도 (낮을수록 맑음)
-        rayleigh={1} // 레일리 산란 (하늘색에 영향)
+        turbidity={12} 
+        rayleigh={1} 
       />
     </>
   );

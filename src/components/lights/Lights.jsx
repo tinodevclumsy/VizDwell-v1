@@ -1,27 +1,16 @@
-import { useRef } from "react";
-import { useHelper } from "@react-three/drei";
-import { HemisphereLightHelper, DirectionalLightHelper } from "three";
 import ControlHelper from "../utils/ControlHelper";
 
 const Lights = () => {
-  const hemisphereLightRef = useRef();
-  const directionalLightRef = useRef();
-
   const { directionalLightCtl } = ControlHelper();
-
-  useHelper(hemisphereLightRef, HemisphereLightHelper, 15);
-  useHelper(directionalLightRef, DirectionalLightHelper, 5);
 
   return (
     <>
       <hemisphereLight
-        ref={hemisphereLightRef}
         skyColor={"#ffd27f"}
         groundColor={"#444"}
-        intensity={.5}
+        intensity={0.5}
       />
       <directionalLight
-        ref={directionalLightRef}
         visible={directionalLightCtl.visible}
         position={[
           directionalLightCtl.position.x,

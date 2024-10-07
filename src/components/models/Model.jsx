@@ -1,36 +1,81 @@
 import { useGLTF } from "@react-three/drei";
 
 export function Model(props) {
-  const { nodes, materials } = useGLTF("/model/20241004-transformed.glb");
+  const { nodes, materials } = useGLTF("/model/20241006-transformed.glb");
   return (
     <group
       {...props}
       dispose={null}
       rotation={[0, Math.PI, 0]}
-      position={[0, -26, 0]}
+      position={[-3, -26, -3]}
       receiveShadow
       castShadow
     >
+      <group
+        position={[-8.153, 1.007, -19.997]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        receiveShadow
+        castShadow
+      >
+        <mesh
+          geometry={nodes['iW2w_-_6"_WOOD_WALL'].geometry}
+          material={materials.PaletteMaterial001}
+          receiveShadow
+          castShadow
+        />
+        <mesh
+          geometry={nodes['iW2w_-_6"_WOOD_WALL_1'].geometry}
+          material={nodes['iW2w_-_6"_WOOD_WALL_1'].material}
+          receiveShadow
+          castShadow
+        />
+      </group>
+      <mesh
+        geometry={
+          nodes[
+            "FamilyInstance_Doors_MAHG_Suite_Door_Ext_Double_Sliding_<632075"
+          ].geometry
+        }
+        material={materials.PaletteMaterial002}
+        position={[-8.153, 1.007, -19.997]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        receiveShadow
+        castShadow
+      />
+      <mesh
+        geometry={nodes['Wall_Walls_<632094_Generic_-_4"<'].geometry}
+        material={materials.PaletteMaterial003}
+        position={[-8.153, 1.007, -19.997]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        receiveShadow
+        castShadow
+      />
+      <mesh
+        geometry={
+          nodes["FamilyInstance_Furniture_Table_-_Misc32_<632104_Table_-_Misc<"]
+            .geometry
+        }
+        material={materials["WOOD TABLE"]}
+        position={[-12.602, 22.507, 9.452]}
+        rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
+        receiveShadow
+        castShadow
+      />
+      <mesh
+        geometry={
+          nodes["FamilyInstance_Furniture_M_Sofa-Corbu_<662053_Sofa<"].geometry
+        }
+        material={materials["Leather - SOFA"]}
+        position={[-8.763, 23.1, 9.274]}
+        rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
+        receiveShadow
+        castShadow
+      />
       <mesh
         geometry={nodes.Plane002.geometry}
         material={materials.White}
-        position={[-1.796, 27.29, 14.046]}
+        position={[-1.796, 27.29, 14.132]}
         rotation={[Math.PI / 2, 0, 0]}
-        receiveShadow
-        castShadow
-      />
-      <mesh
-        geometry={nodes.Plane009.geometry}
-        material={materials.PaletteMaterial003}
-        position={[-15.988, 13, -14.208]}
-        rotation={[0, 0, -Math.PI / 2]}
-        receiveShadow
-        castShadow
-      />
-      <mesh
-        geometry={nodes['Basic_Wall_iW2w_-_6"_WOOD_WALL_632022'].geometry}
-        material={nodes['Basic_Wall_iW2w_-_6"_WOOD_WALL_632022'].material}
-        scale={0.305}
         receiveShadow
         castShadow
       />
@@ -44,7 +89,7 @@ export function Model(props) {
       <mesh
         geometry={nodes.Plane016.geometry}
         material={materials["Lighter Black"]}
-        position={[0.614, 26.315, -10.521]}
+        position={[0.601, 26.315, -10.521]}
         rotation={[Math.PI / 2, 0, -Math.PI / 2]}
         scale={3.61}
         receiveShadow
@@ -70,62 +115,30 @@ export function Model(props) {
       <mesh
         geometry={nodes.Cube012.geometry}
         material={materials.Gloss}
-        position={[-2.94, 23.023, 7.218]}
+        position={[-2.94, 23.023, 5.262]}
         receiveShadow
         castShadow
       />
       <mesh
-        geometry={nodes.Cube013.geometry}
+        geometry={nodes.Cube014.geometry}
         material={materials.Golden}
-        position={[-3.953, 24.829, 7.541]}
-        scale={[0.013, 0.035, 0.379]}
-        receiveShadow
-        castShadow
-      />
-      <mesh
-        geometry={nodes.Cube060.geometry}
-        material={materials.PaletteMaterial001}
-        position={[-2.938, 27.584, 3.673]}
+        position={[-2.854, 24.374, 5.307]}
+        scale={[1, 0.302, 1]}
         receiveShadow
         castShadow
       />
       <mesh
         geometry={nodes.Plane.geometry}
         material={materials.Brick}
-        position={[12.094, 2, 12.63]}
+        position={[15.283, 2.007, 12.621]}
         rotation={[Math.PI / 2, 0, 0]}
         receiveShadow
         castShadow
       />
       <mesh
-        geometry={
-          nodes["FamilyInstance_Doors_MAHG_Suite_Door_Ext_Double_Sliding_<63"]
-            .geometry
-        }
-        material={materials.PaletteMaterial002}
-        position={[-8.123, 11, -20.023]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        receiveShadow
-        castShadow
-      />
-      <mesh
-        geometry={
-          nodes["FamilyInstance_Furniture_M_Sofa-Corbu_<662053_Sofa<"].geometry
-        }
-        material={materials["Leather - SOFA"]}
-        position={[-8.123, 1, -20.023]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        receiveShadow
-        castShadow
-      />
-      <mesh
-        geometry={
-          nodes["FamilyInstance_Furniture_Table_-_Misc32_<632104_Table_-_Mi"]
-            .geometry
-        }
-        material={materials["WOOD TABLE"]}
-        position={[-8.123, 11, -20.023]}
-        rotation={[-Math.PI / 2, 0, 0]}
+        geometry={nodes.Plane116.geometry}
+        material={materials.Tile}
+        position={[2.554, 22.058, -9.536]}
         receiveShadow
         castShadow
       />
@@ -137,8 +150,17 @@ export function Model(props) {
         receiveShadow
         castShadow
       />
+      <mesh
+        geometry={nodes.Frame.geometry}
+        material={materials["Lamp Wood"]}
+        position={[-8.763, 24.101, -14.161]}
+        rotation={[0, -Math.PI / 2, 0]}
+        scale={3.867}
+        receiveShadow
+        castShadow
+      />
     </group>
   );
 }
 
-useGLTF.preload("/model/20241004-transformed.glb");
+useGLTF.preload("/model/20241006-transformed.glb");
