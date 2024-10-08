@@ -23,7 +23,8 @@ const Scene = styled.div`
 
 function App() {
   const isOpenMenu = useSelector((state) => state.menu.openMenu);
-
+  ReactGA.initialize("G-EED4BSJSQY");
+  
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
       <Leva hidden />
