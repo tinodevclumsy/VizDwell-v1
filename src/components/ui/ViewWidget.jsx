@@ -13,6 +13,12 @@ const WidgetContainer = styled.div`
   flex-direction: column;
   padding: 10px;
   z-index: 10;
+
+  @media (max-width: 768px) {
+    left: unset;
+    right: 10px;
+    align-items: flex-end;
+  }
 `;
 
 const WidgetWrapper = styled.div`

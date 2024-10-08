@@ -38,7 +38,6 @@ const CameraController = ({ viewMode, isMoving, isMovingToInside }) => {
     }
     // perspective camera
     if (cameraRef.current && isMoving && !isMovingToInside) {
-      console.log("aaaaa");
       new JEASINGS.JEasing(cameraRef.current.position)
         .to(
           {
