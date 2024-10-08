@@ -1,4 +1,10 @@
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { useMenu } from "../../hooks/useMenu";
+import { useSelector } from "react-redux";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 const Header = styled.div`
   position: fixed;
@@ -12,7 +18,13 @@ const Header = styled.div`
   height: 100%;
   background-color: ${({ theme }) => theme.colors.primary};
   padding: 20px 10px;
-  z-index: 10;
+  z-index: 11;
+  transition: transform 0.3s ease;
+
+  @media (max-width: 768px) {
+    transform: ${(props) =>
+      props.$isopen ? "translateX(0)" : "translateX(-50px)"};
+  }
 `;
 
 const Logo = styled.div`
@@ -31,18 +43,80 @@ const Title = styled.h1`
   letter-spacing: 1px;
 `;
 
+const MobileMenu = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  color: #fff;
+  padding: 20px 20px;
+  z-index: 10;
+  font-size: 18px;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+const MobileCloseMenu = styled.div`
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: ${(props) => (props.$isopen ? "block" : "none")};
+
+  @media (min-width: 769px) {
+    display: none !important;
+  }
+`;
+
+const BottomNav = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  gap: 5px;
+`;
+
+const SocialMediaLink = styled.a`
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+`
+
 const TheHeader = () => {
+  const { changeOpenMenu } = useMenu();
+  const isOpenMenu = useSelector((state) => state.menu.openMenu);
+
   return (
-    <Header>
-      <Logo>
-        <img
-          style={{ maxWidth: "100%" }}
-          src="/images/logos/w_logo.png"
-          alt="Vizdwell - Logo"
-        />
-      </Logo>
-      <Title>Vizdwell</Title>
-    </Header>
+    <>
+      <Header $isopen={isOpenMenu}>
+        <Logo>
+          <img
+            style={{ maxWidth: "100%" }}
+            src="/images/logos/w_logo.png"
+            alt="Vizdwell - Logo"
+          />
+        </Logo>
+        <MobileCloseMenu
+          $isopen={isOpenMenu}
+          onClick={() => changeOpenMenu(false)}
+        >
+          <FontAwesomeIcon icon={faCircleXmark} />
+        </MobileCloseMenu>
+        <BottomNav>
+          <SocialMediaLink href="/" target="_blank">
+            <FontAwesomeIcon icon={faGithub} />
+          </SocialMediaLink>
+          <SocialMediaLink href="/" target="_blank">
+            <FontAwesomeIcon icon={faLinkedin} />
+          </SocialMediaLink>
+          <Title>Vizdwell</Title>
+        </BottomNav>
+      </Header>
+      <MobileMenu onClick={() => changeOpenMenu(true)}>
+        <FontAwesomeIcon icon={faBars} />
+      </MobileMenu>
+    </>
   );
 };
 
