@@ -12,6 +12,7 @@ import ViewWidget from "./ui/ViewWidget";
 import LoadingFallback from "./ui/LoadingFallback";
 import CameraController from "./cameras/CameraController";
 import SkyBackground from "./models/Sky";
+import ControlWidget from "./ui/ControlWidget";
 
 const PropertyCanvas = () => {
   const viewMode = useSelector((state) => state.camera.viewMode);
@@ -24,6 +25,7 @@ const PropertyCanvas = () => {
     <>
       {viewMode !== "DEFAULT" && <ViewWidget viewMode={viewMode} />}
       <ExitButton viewMode={viewMode} isMoving={isMoving} />
+      <ControlWidget />
       <Canvas shadows gl={{ antialias: true }}>
         <fog attach="fog" color="white" near={115} far={150} />
         <Suspense
