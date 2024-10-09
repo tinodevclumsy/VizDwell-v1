@@ -1,4 +1,6 @@
+import { memo } from "react";
 import styled from "styled-components";
+import { useCallback } from "react";
 import { useCameraView } from "../../hooks/useCameraView";
 import { VIEW_POSITIONS } from "../../config/viewPositions";
 import { faVideo } from "@fortawesome/free-solid-svg-icons";
@@ -62,22 +64,32 @@ const Title = styled.h5`
 
 const ViewWidget = ({ viewMode }) => {
   const { changeView } = useCameraView();
+  const { name: currentView } = VIEW_POSITIONS[viewMode];
+  const onViewClick = useCallback(
+    (key) => {
+      changeView(key);
+    },
+    [changeView]
+  );
+  const filteredViewPositions = Object.entries(VIEW_POSITIONS).filter(
+    ([key]) => key !== "DEFAULT"
+  );
 
   return (
     <>
       <WidgetContainer>
         <WidgetTitle>
           <FontAwesomeIcon icon={faVideo} />
-          <Title>Camera - {VIEW_POSITIONS[viewMode].name}</Title>
+          <Title>Camera - {currentView}</Title>
         </WidgetTitle>
         <WidgetWrapper>
-          {Object.entries(VIEW_POSITIONS).map(
+          {filteredViewPositions.map(
             ([key, value], index) =>
               key !== "DEFAULT" && (
                 <WidgetButton
                   disabled={viewMode === key}
                   key={index}
-                  onClick={() => changeView(key)}
+                  onClick={() => onViewClick(key)}
                 >
                   {value.name}
                 </WidgetButton>
@@ -89,4 +101,4 @@ const ViewWidget = ({ viewMode }) => {
   );
 };
 
-export default ViewWidget;
+export default memo(ViewWidget);

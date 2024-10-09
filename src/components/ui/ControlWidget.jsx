@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExpand, faCompress } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
@@ -36,4 +36,4 @@ const ControlWidget = () => {
   );
 };
 
-export default ControlWidget;
+export default memo(ControlWidget);

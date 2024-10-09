@@ -1,3 +1,4 @@
+import { memo } from "react";
 const Ground = () => {
   return (
     <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -26, 0]} receiveShadow>
@@ -7,4 +8,4 @@ const Ground = () => {
   );
 };
 
-export default Ground;
+export default memo(Ground);

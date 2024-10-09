@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Environment, Html } from "@react-three/drei";
-// import { Perf } from "r3f-perf";
+import { Perf } from "r3f-perf";
 import { useSelector } from "react-redux";
 import { Model } from "./models/Model";
 import Ground from "./models/Ground";
@@ -20,11 +20,14 @@ const PropertyCanvas = () => {
   const isMovingToInside = useSelector(
     (state) => state.camera.isMovingToInside
   );
+  const isFrontView = useSelector((state) => state.camera.isFrontView);
 
   return (
     <>
       {viewMode !== "DEFAULT" && <ViewWidget viewMode={viewMode} />}
-      <ExitButton viewMode={viewMode} isMoving={isMoving} />
+      {viewMode !== "DEFAULT" && !isMoving && (
+        <ExitButton viewMode={viewMode} isMoving={isMoving} />
+      )}
       <ControlWidget />
       <Canvas shadows gl={{ antialias: true }}>
         <fog attach="fog" color="white" near={115} far={150} />
@@ -44,16 +47,17 @@ const PropertyCanvas = () => {
             </Html>
           }
         >
-          {/* <Perf position="bottom-right" /> */}
+          <Perf position="bottom-right" />
           <CameraController
             viewMode={viewMode}
             isMoving={isMoving}
             isMovingToInside={isMovingToInside}
+            isFrontView={isFrontView}
           />
           <Lights />
           <Model />
           <Ground />
-          <SceneViewButtons />
+          {viewMode === "DEFAULT" && isFrontView && <SceneViewButtons />}
           <Environment
             files="./images/sky.hdr"
             background
