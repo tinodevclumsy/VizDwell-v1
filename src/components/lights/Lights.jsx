@@ -1,7 +1,9 @@
 import ControlHelper from "../utils/ControlHelper";
-
+import { memo } from "react";
 const Lights = () => {
   const { directionalLightCtl } = ControlHelper();
+  const { visible, castShadow, position } = directionalLightCtl;
+  const { x, y, z } = position;
 
   return (
     <>
@@ -11,14 +13,10 @@ const Lights = () => {
         intensity={0.5}
       />
       <directionalLight
-        visible={directionalLightCtl.visible}
-        position={[
-          directionalLightCtl.position.x,
-          directionalLightCtl.position.y,
-          directionalLightCtl.position.z,
-        ]}
+        visible={visible}
+        position={[x, y, z]}
         color="#ffd27f"
-        castShadow={directionalLightCtl.castShadow}
+        castShadow={castShadow}
         intensity={1}
         shadow-mapSize-width={1024}
         shadow-mapSize-height={1024}
@@ -33,4 +31,4 @@ const Lights = () => {
   );
 };
 
-export default Lights;
+export default memo(Lights);

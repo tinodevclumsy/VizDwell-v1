@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, memo } from "react";
 import { useThree } from "@react-three/fiber";
 import { Sky } from "@react-three/drei";
 import * as THREE from "three";
@@ -18,11 +18,11 @@ const SkyBackground = () => {
         mieCoefficient={0.005}
         mieDirectionalG={0.7}
         elevation={2}
-        turbidity={12} 
-        rayleigh={1} 
+        turbidity={12}
+        rayleigh={1}
       />
     </>
   );
 };
 
-export default SkyBackground;
+export default memo(SkyBackground);

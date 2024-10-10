@@ -2,11 +2,12 @@ import { useControls } from "leva";
 import { VIEW_POSITIONS } from "../../config/viewPositions";
 
 const ControlHelper = () => {
+  const { x, y, z } = VIEW_POSITIONS.DEFAULT.position;
   const cameraCtl = useControls("PerspectiveCamera", {
     position: {
-      x: VIEW_POSITIONS.DEFAULT.position.x,
-      y: VIEW_POSITIONS.DEFAULT.position.y,
-      z: VIEW_POSITIONS.DEFAULT.position.z,
+      x,
+      y,
+      z,
     },
   });
 

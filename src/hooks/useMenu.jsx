@@ -5,7 +5,6 @@ export const useMenu = () => {
   const dispatch = useDispatch();
 
   const changeOpenMenu = (v) => {
-    console.log(v)
     dispatch(setOpenMenu(v));
   };
 
