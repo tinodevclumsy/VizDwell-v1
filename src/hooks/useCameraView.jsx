@@ -26,18 +26,12 @@ export const useCameraView = () => {
 
   const getViewBoundary = (mode) => {
     const { size, position } = VIEW_POSITIONS[mode].boundary;
+    const { w, h, d } = size;
+    const { x, y, z } = position;
 
     const roomBounds = new Box3(
-      new Vector3(
-        position.x - size.w / 2,
-        position.y - size.h / 2,
-        position.z - size.d / 2
-      ),
-      new Vector3(
-        position.x + size.w / 2,
-        position.y + size.h / 2,
-        position.z + size.d / 2
-      )
+      new Vector3(x - w / 2, y - h / 2, z - d / 2),
+      new Vector3(x + w / 2, y + h / 2, z + d / 2)
     );
 
     return roomBounds;

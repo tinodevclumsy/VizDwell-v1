@@ -12,6 +12,7 @@ import ViewWidget from "./ui/ViewWidget";
 import LoadingFallback from "./ui/LoadingFallback";
 import CameraController from "./cameras/CameraController";
 import SkyBackground from "./models/Sky";
+import ControlWidget from "./ui/ControlWidget";
 
 const PropertyCanvas = () => {
   const viewMode = useSelector((state) => state.camera.viewMode);
@@ -19,11 +20,15 @@ const PropertyCanvas = () => {
   const isMovingToInside = useSelector(
     (state) => state.camera.isMovingToInside
   );
+  const isFrontView = useSelector((state) => state.camera.isFrontView);
 
   return (
     <>
       {viewMode !== "DEFAULT" && <ViewWidget viewMode={viewMode} />}
-      <ExitButton viewMode={viewMode} isMoving={isMoving} />
+      {viewMode !== "DEFAULT" && !isMoving && (
+        <ExitButton viewMode={viewMode} isMoving={isMoving} />
+      )}
+      <ControlWidget />
       <Canvas shadows gl={{ antialias: true }}>
         <fog attach="fog" color="white" near={115} far={150} />
         <Suspense
@@ -47,11 +52,12 @@ const PropertyCanvas = () => {
             viewMode={viewMode}
             isMoving={isMoving}
             isMovingToInside={isMovingToInside}
+            isFrontView={isFrontView}
           />
           <Lights />
           <Model />
           <Ground />
-          <SceneViewButtons />
+          {viewMode === "DEFAULT" && isFrontView && <SceneViewButtons />}
           <Environment
             files="./images/sky.hdr"
             background

@@ -4,18 +4,9 @@ import ControlHelper from "../utils/ControlHelper";
 
 const Camera = forwardRef((_, ref) => {
   const { cameraCtl } = ControlHelper();
-
+  const { x, y, z } = cameraCtl.position;
   return (
-    <PerspectiveCamera
-      makeDefault
-      ref={ref}
-      fov={75}
-      position={[
-        cameraCtl.position.x,
-        cameraCtl.position.y,
-        cameraCtl.position.z,
-      ]}
-    />
+    <PerspectiveCamera makeDefault ref={ref} fov={75} position={[x, y, z]} />
   );
 });
 

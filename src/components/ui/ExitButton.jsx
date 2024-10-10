@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styled, { keyframes } from "styled-components";
 import { useCameraView } from "../../hooks/useCameraView";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -32,7 +33,7 @@ const ExitBtn = styled.button`
   border-radius: 50%;
   background: ${({ theme }) => theme.colors.primary};
   border: 1px solid ${({ theme }) => theme.colors.primary};
-  color:  ${({ theme }) => theme.colors.deem_white};
+  color: ${({ theme }) => theme.colors.deem_white};
   position: relative;
   display: flex;
   justify-content: center;
@@ -55,19 +56,16 @@ const ExitBtn = styled.button`
   }
 `;
 
-const ExitButton = ({ viewMode, isMoving }) => {
+const ExitButton = () => {
   const { changeView } = useCameraView();
 
   return (
-    viewMode !== "DEFAULT" &&
-    !isMoving && (
-      <ExitBtnContainer>
-        <ExitBtn onClick={() => changeView("DEFAULT")}>
-          <FontAwesomeIcon icon={faXmark} />
-        </ExitBtn>
-      </ExitBtnContainer>
-    )
+    <ExitBtnContainer>
+      <ExitBtn onClick={() => changeView("DEFAULT")}>
+        <FontAwesomeIcon icon={faXmark} />
+      </ExitBtn>
+    </ExitBtnContainer>
   );
 };
 
-export default ExitButton;
+export default memo(ExitButton);
