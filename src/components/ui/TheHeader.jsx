@@ -41,6 +41,7 @@ const Title = styled.h1`
   font-optical-sizing: auto;
   font-style: normal;
   letter-spacing: 1px;
+  margin-top: 5px;
 `;
 
 const MobileMenu = styled.div`
@@ -78,9 +79,22 @@ const BottomNav = styled.div`
 `;
 
 const SocialMediaLink = styled.a`
+  display: flex;
+  flex-direction: column;
   color: #fff;
   font-size: 18px;
   text-align: center;
+  text-decoration: none;
+  margin-top: 5px;
+
+  :first-child {
+    margin-bottom: 2px;
+  }
+
+  span {
+    font-size: 8px;
+    margin-top: 3px;
+  }
 `
 
 const TheHeader = () => {
@@ -104,11 +118,16 @@ const TheHeader = () => {
           <FontAwesomeIcon icon={faCircleXmark} />
         </MobileCloseMenu>
         <BottomNav>
-          <SocialMediaLink href="/" target="_blank">
+          <SocialMediaLink href="https://github.com/tinodevclumsy/VizDwell-v1" target="_blank">
             <FontAwesomeIcon icon={faGithub} />
           </SocialMediaLink>
-          <SocialMediaLink href="/" target="_blank">
+          <SocialMediaLink href="https://www.linkedin.com/in/seungjun-martin-lee-tinodevclumsy/" target="_blank">
             <FontAwesomeIcon icon={faLinkedin} />
+            <span>DEV</span>
+          </SocialMediaLink>
+          <SocialMediaLink href="https://www.linkedin.com/in/jun-park-84713b249/" target="_blank">
+            <FontAwesomeIcon icon={faLinkedin} />
+            <span>MODELING</span>
           </SocialMediaLink>
           <Title>Vizdwell</Title>
         </BottomNav>
