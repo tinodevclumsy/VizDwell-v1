@@ -1,7 +1,7 @@
 import { useGLTF } from "@react-three/drei";
 
 export function Model(props) {
-  const { nodes, materials } = useGLTF("/model/20241006-transformed.glb");
+  const { nodes, materials } = useGLTF("/model/20241019-transformed.glb");
   return (
     <group
       {...props}
@@ -52,22 +52,22 @@ export function Model(props) {
       />
       <mesh
         geometry={
-          nodes["FamilyInstance_Furniture_Table_-_Misc32_<632104_Table_-_Misc<"]
-            .geometry
+          nodes["FamilyInstance_Furniture_M_Sofa-Corbu_<662053_Sofa<"].geometry
         }
-        material={materials["WOOD TABLE"]}
-        position={[-12.602, 22.507, 9.452]}
+        material={materials["Leather - SOFA"]}
+        position={[-8.763, 23.1, 9.274]}
         rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
         receiveShadow
         castShadow
       />
       <mesh
         geometry={
-          nodes["FamilyInstance_Furniture_M_Sofa-Corbu_<662053_Sofa<"].geometry
+          nodes["FamilyInstance_Furniture_Table_-_Misc32_<632104_Table_-_Mi"]
+            .geometry
         }
-        material={materials["Leather - SOFA"]}
-        position={[-8.763, 23.1, 9.274]}
-        rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
+        material={materials["WOOD TABLE"]}
+        position={[-8.153, -9.024, -19.997]}
+        rotation={[-Math.PI / 2, 0, 0]}
         receiveShadow
         castShadow
       />
@@ -143,6 +143,47 @@ export function Model(props) {
         castShadow
       />
       <mesh
+        geometry={nodes.drawer_cabinet_drawer_01.geometry}
+        material={materials["drawer_cabinet.001"]}
+        position={[-0.01, 1.038, 6.367]}
+        scale={1.525}
+        receiveShadow
+        castShadow
+      />
+      <group scale={4.52} receiveShadow castShadow>
+        <mesh
+          geometry={nodes.Cube092.geometry}
+          material={materials.hanging_picture_frame_02_artwork}
+          receiveShadow
+          castShadow
+        />
+        <mesh
+          geometry={nodes.Cube092_1.geometry}
+          material={materials.PaletteMaterial004}
+          receiveShadow
+          castShadow
+        />
+      </group>
+      <group
+        position={[-10.279, 24.817, -0.165]}
+        scale={2.397}
+        receiveShadow
+        castShadow
+      >
+        <mesh
+          geometry={nodes.Circle.geometry}
+          material={materials.PaletteMaterial005}
+          receiveShadow
+          castShadow
+        />
+        <mesh
+          geometry={nodes.Circle_1.geometry}
+          material={materials.PaletteMaterial006}
+          receiveShadow
+          castShadow
+        />
+      </group>
+      <mesh
         geometry={nodes.Cube002.geometry}
         material={materials["Black Furniture"]}
         position={[-0.731, 23.38, -13.412]}
@@ -159,8 +200,17 @@ export function Model(props) {
         receiveShadow
         castShadow
       />
+      <mesh
+        geometry={nodes.Cylinder001.geometry}
+        material={nodes.Cylinder001.material}
+        position={[-0.426, 26.767, 12.581]}
+        rotation={[Math.PI / 2, 0, -Math.PI / 2]}
+        scale={[0.044, 0.271, 0.044]}
+        receiveShadow
+        castShadow
+      />
     </group>
   );
 }
 
-useGLTF.preload("/model/20241006-transformed.glb");
+useGLTF.preload("/model/20241019-transformed.glb");
